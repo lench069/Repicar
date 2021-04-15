@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='inicio' text=''>atras</ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-card>
+    <ion-card-header>
+     <!--<ion-card-subtitle>Card Subtitle</ion-card-subtitle>--> 
+      <!--<ion-card-title>Card Title</ion-card-title>--> 
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-avatar class="image-center">
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-avatar>
+        <ion-item>
+          <ion-label position="floating">Nombres:</ion-label>
+          <ion-input [(ngModel)]="nombres"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Apellidos:</ion-label>
+          <ion-input [(ngModel)]="apellidos" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Email:</ion-label>
+          <ion-input [(ngModel)]="email" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Celular:</ion-label>
+          <ion-input [(ngModel)]="celular" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña:</ion-label>
+          <ion-input [(ngModel)]="contrasenia" ></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="block" (click)="Guardar()">REGISTRAR</ion-button>
+</ion-content>
+ 
+ 

@@ -1,9 +1,43 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>historial</ion-title>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='inicio' text=''>atras</ion-back-button>
+    </ion-buttons>
+    <ion-title>Historial</ion-title>
+    <ion-buttons slot="end" >
+      <ion-button (click)="servicio.irA('/pedido/0')">
+        <ion-icon name="chatbox" style="font-size: 30px;" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <h4>22/02/2020</h4>
+      <ion-card>
+        <ion-label text-wrap>
+          <h2>Ubicacion:<small>Chimborazo; Riobamba</small> </h2>
+          <h2>Automovil:<small>Ford, Escape, 2006</small> </h2>
+          <h2>Repuesto:<small>Bomba de agua, original</small> </h2>
+        </ion-label>
+        <ion-buttons >
+          <ion-button >
+            <ion-icon name="trash-outline">dg</ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-card>
+      <ion-card>
+        <ion-label text-wrap>
+          <h2>Ubicacion:<small>Chimborazo; Riobamba</small> </h2>
+          <h2>Automovil:<small>Ford, Escape, 2006</small> </h2>
+          <h2>Repuesto:<small>Bomba de agua, original</small> </h2>
+        </ion-label>
+        <ion-buttons >
+          <ion-button >
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-card>
+  </ion-list>
 </ion-content>

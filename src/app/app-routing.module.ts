@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'acerca',
     loadChildren: () => import('./pages/acerca/acerca.module').then( m => m.AcercaPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   }
 ];
 

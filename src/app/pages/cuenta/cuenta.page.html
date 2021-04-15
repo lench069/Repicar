@@ -1,9 +1,49 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>cuenta</ion-title>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='inicio' text=''>atras</ion-back-button>
+    </ion-buttons>
+    <ion-title>Mi cuenta</ion-title>
+    <ion-buttons slot="end" >
+      <ion-button (click)="servicio.irA('/pedido/0')">
+        <ion-icon name="chatbox" style="font-size: 30px;" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+<ion-card>
+    <ion-card-header>
+     <!--<ion-card-subtitle>Card Subtitle</ion-card-subtitle>--> 
+      <!--<ion-card-title>Card Title</ion-card-title>--> 
+    </ion-card-header>
 
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Nombres:</ion-label>
+          <ion-input [(ngModel)]="nombres"></ion-input>
+          <ion-buttons slot="end">
+            <ion-icon name="color-wand-outline"></ion-icon>
+          </ion-buttons>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Apellidos:</ion-label>
+          <ion-input [(ngModel)]="apellidos" ></ion-input>
+          <ion-buttons slot="end">
+            <ion-icon name="color-wand-outline"></ion-icon>
+          </ion-buttons>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Email:</ion-label>
+          <ion-input [(ngModel)]="email" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Celular:</ion-label>
+          <ion-input [(ngModel)]="celular" disabled></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="block" (click)="Actualizar()">GUARDAR CAMBIOS</ion-button>
 </ion-content>
