@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='inicio' text=''>atras</ion-back-button>
+    </ion-buttons>
+    <ion-title>Nuevo Pedido</ion-title>
+    <ion-buttons slot="end" >
+      <ion-button (click)="servicio.irA('/pedido/0')">
+        <ion-icon name="chatbox" style="font-size: 30px;" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label>Provincia</ion-label>
+    <ion-select class="custom-options" interface="popover">
+      <ion-select-option *ngFor="let provincia of provincias" value="{{ provincia.NOMBRE }}" (click)="Cargar_Ciudades(provincia.ID_PROVINCIA)">
+        {{ provincia.NOMBRE }}
+    </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Ciudad</ion-label>
+    <ion-select class="custom-options" interface="popover">
+      <ion-select-option value="brown">Chimborazo</ion-select-option>
+      <ion-select-option value="blonde">Carchi</ion-select-option>
+      <ion-select-option value="black">Imbabura</ion-select-option>
+      <ion-select-option value="red">Red</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Tipo de vehiculo</ion-label>
+    <ion-select class="custom-options" interface="popover">
+      <ion-select-option value="brown">Chimborazo</ion-select-option>
+      <ion-select-option value="blonde">Carchi</ion-select-option>
+      <ion-select-option value="black">Imbabura</ion-select-option>
+      <ion-select-option value="red">Red</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Marca</ion-label>
+    <ion-select class="custom-options" interface="popover">
+      <ion-select-option value="brown">Chimborazo</ion-select-option>
+      <ion-select-option value="blonde">Carchi</ion-select-option>
+      <ion-select-option value="black">Imbabura</ion-select-option>
+      <ion-select-option value="red">Red</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Modelo</ion-label>
+    <ion-select class="custom-options" interface="popover">
+      <ion-select-option value="brown">Chimborazo</ion-select-option>
+      <ion-select-option value="blonde">Carchi</ion-select-option>
+      <ion-select-option value="black">Imbabura</ion-select-option>
+      <ion-select-option value="red">Red</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Año</ion-label>
+    <ion-select class="custom-options" interface="popover">
+      <ion-select-option value="brown">Chimborazo</ion-select-option>
+      <ion-select-option value="blonde">Carchi</ion-select-option>
+      <ion-select-option value="black">Imbabura</ion-select-option>
+      <ion-select-option value="red">Red</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-content>

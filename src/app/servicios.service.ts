@@ -9,7 +9,7 @@ import { ToastController } from '@ionic/angular';
 export class ServiciosService {
 
   //URL del servidor
-  private URL_API: string = 'http://localhost/api_repi/'; 
+  private URL_API: string = 'http://localhost/api_repicar/'; 
 
 
   constructor(private router: Router,
@@ -62,6 +62,15 @@ export class ServiciosService {
       }) 
       );
   };
+
+  //***********************PROVINCIA INICIO******************************************/
+  Provincias_por_pais(id_pais:number) {
+    return this.http.get(
+      this.URL_API + 'provincias-pais/'+id_pais , 
+      );
+  };
+
+
 
    //esta funcion es usada para formatear los parametros.
    objectToFormData(obj: any, form?: any, namespace?: any) {
