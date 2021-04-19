@@ -73,6 +73,9 @@
           <ion-icon name="camera-outline"></ion-icon>
         </ion-button>
     </ion-item>
+    <ion-label >
+      <img *ngIf="imagen != null" [src]="imagen">
+    </ion-label>
 
     <ion-grid>
       <ion-row>

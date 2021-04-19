@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from 'src/app/servicios.service';
+import { Camera } from '@ionic-native/camera/ngx'; //para la camara
 
 
 @Component({
@@ -40,8 +41,11 @@ export class NewpedidoPage implements OnInit {
   public chservi:boolean=false;
   public chgenerico:boolean= false;
   public choriginal:boolean=false;
+  public imagen:any = null;
 
-  constructor(public servicio:ServiciosService) { 
+  constructor(public servicio:ServiciosService,
+    private camera:Camera //para usar la camara.
+    ) { 
     
   }
 
@@ -298,7 +302,9 @@ export class NewpedidoPage implements OnInit {
       call_principal:this.cprincipal,
       call_secundaria:this.csecundaria,
       telefono_env:this.telefono_env,
-      referencia:this.referencia
+      referencia:this.referencia,
+      //fotos
+      imagen:this.imagen
 
     }).subscribe((data:any)=>{
     
@@ -351,6 +357,22 @@ export class NewpedidoPage implements OnInit {
        var codigo = "";
        for (let i=0; i<10; i++) codigo +=caracteres.charAt(Math.floor(Math.random()*caracteres.length)); 
        return codigo;
+  };
+
+  Capturar_foto()
+  {
+    this.camera.getPicture({quality: 60,
+      allowEdit:true, //permite editar la imgen 
+      targetHeight:800, //ancho
+      targetWidth:800, //alto
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }).then((imageData) => {
+     this.imagen = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+       this.servicio.Mensajes('No se capturo ninguna imagen','danger');
+    });
   };
 
 }

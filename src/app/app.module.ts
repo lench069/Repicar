@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ServiciosService } from './servicios.service';
 //importante para usar web services
 import { HttpClientModule } from '@angular/common/http';
+//importante para el uso de la camara
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule.forRoot(), AppRoutingModule],
   providers: [
     ServiciosService,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],

@@ -1,5 +1,7 @@
 {
   "name": "RepiCar",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
