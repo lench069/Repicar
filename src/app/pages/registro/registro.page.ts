@@ -31,7 +31,7 @@ export class RegistroPage implements OnInit {
     }else if(this.celular == '')
     {
       this.servicio.Mensajes('Debe ingresar un numero de celular.', 'warning');
-    }else if(this.email == '')
+    }else if(this.email == '') 
     {
       this.servicio.Mensajes('Debe ingresar un email.', 'warning');
     }else if(this.contrasenia == '')

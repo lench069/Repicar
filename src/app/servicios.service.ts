@@ -69,6 +69,81 @@ export class ServiciosService {
       this.URL_API + 'provincias-pais/'+id_pais , 
       );
   };
+    //***********************CIUDAD INICIO******************************************/
+    Ciudades_por_provincia(id_ciudad:number) {
+      return this.http.get(
+        this.URL_API + 'ciudades-provincia/'+id_ciudad, 
+        );
+    };
+      //***********************TIPO VEHICULO INICIO******************************************/
+      Tipo_vehiculo() {
+        return this.http.get(
+          this.URL_API + 'listado-tipo-vehiculo' 
+          );
+      };
+       //***********************MARCA INICIO******************************************/
+       Marcas_Tipov(id_tipov:number) {
+      return this.http.get(
+        this.URL_API + 'marcas-tipov/'+id_tipov, 
+        );
+    };
+        //***********************MODELO INICIO******************************************/
+        Modelo_Marca(id_marca:number) {
+          return this.http.get(
+            this.URL_API + 'modelo-marca/'+id_marca, 
+            );
+        };
+
+        //***********************CLIENTES INICIO******************************************/
+        Pedido_Guardar(data:any) {
+        return this.http.post(
+          this.URL_API + 'registrar-pedido', 
+          this.objectToFormData({
+            cod_pedido:data.cod_pedido,
+            id_cliente:data.id_cliente,
+            id_ciudad:data.id_ciudad,
+            tipo_vehiculo:data.tipo_vehiculo,
+            marca:data.marca,
+            modelo:data.modelo,
+            anio: data.anio,
+            descripcion: data.descripcion,
+            original: data.original,
+            generico: data.generico,
+            factura: data.factura == false ? "0" : "1",
+            servicio_env: data.servicio_env == false ? "0" : "1",
+            estado: data.estado,
+            fecha_ini: data.fecha_ini,
+            fecha_fin: data.fecha_fin,
+            //factura
+            nombres:data.nombres,
+            email:data.email,
+            telefono:data.telefono,
+            ci:data.ci,
+            direccion:data.direccion,
+            //envio
+            call_principal:data.call_principal,
+            call_secundaria:data.call_secundaria,
+            telefono_env:data.telefono_env,
+            referencia:data.referencia
+          }) 
+          );
+      };
+      //***********************CLIENTES INICIO******************************************/
+      Factura_Guardar(data:any) {
+      return this.http.post(
+        this.URL_API + 'registrar-factura', 
+        this.objectToFormData({
+          id_cliente:data.id_cliente,
+          nombres:data.nombres,
+          apellidos:data.apellidos,
+          email:data.email,
+          telefono:data.telefono,
+          ci: data.ci,
+          direccion: data.direccion
+        }) 
+        );
+    };
+
 
 
 

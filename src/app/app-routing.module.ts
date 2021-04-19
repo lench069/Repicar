@@ -39,6 +39,14 @@ const routes: Routes = [
   {
     path: 'newpedido',
     loadChildren: () => import('./pages/newpedido/newpedido.module').then( m => m.NewpedidoPageModule)
+  },
+  {
+    path: 'facturas',
+    loadChildren: () => import('./pages/facturas/facturas.module').then( m => m.FacturasPageModule)
+  },
+  {
+    path: 'envios',
+    loadChildren: () => import('./pages/envios/envios.module').then( m => m.EnviosPageModule)
   }
 ];
 

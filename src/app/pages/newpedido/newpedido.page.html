@@ -12,57 +12,154 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-list>
   <ion-item>
     <ion-label>Provincia</ion-label>
-    <ion-select class="custom-options" interface="popover">
-      <ion-select-option *ngFor="let provincia of provincias" value="{{ provincia.NOMBRE }}" (click)="Cargar_Ciudades(provincia.ID_PROVINCIA)">
-        {{ provincia.NOMBRE }}
-    </ion-select-option>
+    <ion-select class="custom-options" interface="popover" [(ngModel)]="id_provincia" (ionChange)="Cargar_Ciudades(provi.value)" #provi>
+      <ion-select-option *ngFor="let provincia of provincias" value="{{ provincia.ID_PROVINCIA}}">
+          {{ provincia.NOMBRE }}
+      </ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label>Ciudad</ion-label>
-    <ion-select class="custom-options" interface="popover">
-      <ion-select-option value="brown">Chimborazo</ion-select-option>
-      <ion-select-option value="blonde">Carchi</ion-select-option>
-      <ion-select-option value="black">Imbabura</ion-select-option>
-      <ion-select-option value="red">Red</ion-select-option>
+    <ion-select class="custom-options" interface="popover" [(ngModel)]="id_ciudad">
+        <ion-select class="custom-options" interface="popover">
+          <ion-select-option *ngFor="let ciudad of ciudades" value="{{ ciudad.ID_CIUDAD}}">
+            {{ ciudad.NOMBRE }}
+        </ion-select-option>
+        </ion-select>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label>Tipo de vehiculo</ion-label>
-    <ion-select class="custom-options" interface="popover">
-      <ion-select-option value="brown">Chimborazo</ion-select-option>
-      <ion-select-option value="blonde">Carchi</ion-select-option>
-      <ion-select-option value="black">Imbabura</ion-select-option>
-      <ion-select-option value="red">Red</ion-select-option>
+    <ion-select class="custom-options" interface="popover" [(ngModel)]="id_tipov" (ionChange)="Cargar_Marcas(tipo_ve.value)" #tipo_ve>
+      <ion-select-option *ngFor="let tipo_vehivulo of tipo_vehiculos" value="{{ tipo_vehivulo.ID_TIPOV}}">
+        {{ tipo_vehivulo.DESCRIPCION }}
+      </ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label>Marca</ion-label>
-    <ion-select class="custom-options" interface="popover">
-      <ion-select-option value="brown">Chimborazo</ion-select-option>
-      <ion-select-option value="blonde">Carchi</ion-select-option>
-      <ion-select-option value="black">Imbabura</ion-select-option>
-      <ion-select-option value="red">Red</ion-select-option>
+    <ion-select class="custom-options" interface="popover" [(ngModel)]="id_marca" (ionChange)="Cargar_Modelos(marca.value)" #marca>
+      <ion-select-option *ngFor="let marca of marcas" value="{{ marca.ID_MARCA}}">
+        {{ marca.DESCRIPCION }}
+      </ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label>Modelo</ion-label>
-    <ion-select class="custom-options" interface="popover">
-      <ion-select-option value="brown">Chimborazo</ion-select-option>
-      <ion-select-option value="blonde">Carchi</ion-select-option>
-      <ion-select-option value="black">Imbabura</ion-select-option>
-      <ion-select-option value="red">Red</ion-select-option>
+    <ion-select class="custom-options" interface="popover" [(ngModel)]="id_modelo">
+      <ion-select-option *ngFor="let modelo of modelos"  value="{{ modelo.ID_MODELO}}">
+        {{ modelo.DESCRIPCION }}
+      </ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label>Año</ion-label>
-    <ion-select class="custom-options" interface="popover">
-      <ion-select-option value="brown">Chimborazo</ion-select-option>
-      <ion-select-option value="blonde">Carchi</ion-select-option>
-      <ion-select-option value="black">Imbabura</ion-select-option>
-      <ion-select-option value="red">Red</ion-select-option>
+    <ion-select class="custom-options" interface="popover" [(ngModel)]="anioselect">
+     <ion-select-option *ngFor="let anio of anios"  value="{{ anio.valor}}">
+        {{ anio.valor }}
+      </ion-select-option>
     </ion-select>
   </ion-item>
+  <ion-list-header color="primary">
+    Descripcion del pedido
+  </ion-list-header>
+<!-- Textarea with custom number of rows and cols -->
+    <ion-item>
+      <ion-textarea rows="3" cols="20" [(ngModel)]="descripcion" placeholder="Detalle aqui el tipo de repuesto y las caracteristicas especiales qie desea para la busqueda"></ion-textarea>
+        <ion-button slot="end" type ="file" fill='outline' (click)="Capturar_foto()">
+          <ion-icon name="camera-outline"></ion-icon>
+        </ion-button>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" class="ion-text-center">
+          <ion-label>Original</ion-label><br>
+          <ion-checkbox [(ngModel)]="choriginal"></ion-checkbox> 
+        </ion-col>
+        <ion-col size="6" class="ion-text-center">
+          <ion-label>Generico</ion-label><br>
+          <ion-checkbox [(ngModel)]="chgenerico"></ion-checkbox> 
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col offset="1">
+          <ion-checkbox [(ngModel)]="chfac" ></ion-checkbox> 
+          <ion-label>Factura</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-card *ngIf="chfac == true">   
+        <ion-card-content>
+          <ion-row >
+              <ion-col size="11">
+                  <ion-list>
+                    <ion-item>
+                      <ion-label position="fixed">Nombres:</ion-label>
+                      <ion-input [(ngModel)]="nombres_fac"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label position="fixed">Cedula:</ion-label>
+                      <ion-input [(ngModel)]="ci_fac" ></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label position="fixed">Telefono:</ion-label>
+                      <ion-input [(ngModel)]="telefono_fac" ></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label position="fixed">Direccion:</ion-label>
+                      <ion-input [(ngModel)]="direccion_fac" ></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label position="fixed">Email:</ion-label>
+                      <ion-input [(ngModel)]="email_fac" ></ion-input>
+                    </ion-item>
+                  </ion-list>
+            </ion-col>
+            <ion-col>
+                    <ion-icon name="star-outline"></ion-icon>
+            </ion-col>
+        </ion-row>
+        </ion-card-content>
+      </ion-card>
+      <ion-row>
+        <ion-col offset="1">
+          <ion-checkbox [(ngModel)]="chservi" ></ion-checkbox> 
+          <ion-label>Servicio de envio</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-card *ngIf="chservi == true">   
+        <ion-card-content>
+          <ion-row >
+              <ion-col size="11">
+                  <ion-list>
+                    <ion-item>
+                      <ion-label position="fixed">Calle principal:</ion-label>
+                      <ion-input [(ngModel)]="cprincipal"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label position="fixed">Calle secundaria:</ion-label>
+                      <ion-input [(ngModel)]="csecundaria" ></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label position="fixed">Telefono:</ion-label>
+                      <ion-input [(ngModel)]="telefono_env" ></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label position="fixed">referencia:</ion-label>
+                      <ion-input [(ngModel)]="referencia" ></ion-input>
+                    </ion-item>
+                  </ion-list>
+            </ion-col>
+            <ion-col>
+                    <ion-icon name="star-outline"></ion-icon>
+            </ion-col>
+        </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-grid>
+    <ion-button expand="block" (click)="Guardar()" color="warning">BUSCAR</ion-button>
+  </ion-list>
 </ion-content>
