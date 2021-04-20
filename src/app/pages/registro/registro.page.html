@@ -15,8 +15,8 @@
 
     <ion-card-content>
       <ion-list>
-        <ion-avatar class="image-center">
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        <ion-avatar class="image-center" (click)="Capturar_foto()">
+          <img [src]="imagen">
         </ion-avatar>
         <ion-item>
           <ion-label position="floating">Nombres:</ion-label>

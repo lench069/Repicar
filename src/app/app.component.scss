@@ -117,3 +117,7 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+ion-toolbar{
+  padding: 50px 10px 10px 30px;  //arriba - izquierda - abajo - derecha
+}

@@ -371,6 +371,7 @@ export class NewpedidoPage implements OnInit {
     }).then((imageData) => {
      this.imagen = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
+      console.log(err);
        this.servicio.Mensajes('No se capturo ninguna imagen','danger');
     });
   };

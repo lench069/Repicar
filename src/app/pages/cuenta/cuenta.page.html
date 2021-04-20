@@ -20,6 +20,9 @@
 
     <ion-card-content>
       <ion-list>
+        <ion-avatar class="image-center" (click)="Capturar_foto()">
+          <img [src]="imagen">
+        </ion-avatar>
         <ion-item>
           <ion-label position="stacked">Nombres:</ion-label>
           <ion-input [(ngModel)]="nombres"></ion-input>

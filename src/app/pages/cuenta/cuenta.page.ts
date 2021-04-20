@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from 'src/app/servicios.service';
+import { Camera } from '@ionic-native/camera/ngx'; //para la camara
 
 @Component({
   selector: 'app-cuenta',
@@ -15,9 +16,11 @@ export class CuentaPage implements OnInit {
   public email: string = '';
   public estado: string = '';
   public contrasenia: string = '';
-  public imagen: any = '';
+  public imagen:any = null;
 
-  constructor(public servicio:ServiciosService) { }
+  constructor(public servicio:ServiciosService,
+    private camera:Camera //para usar la camara.
+    ) { }
 
   ngOnInit() {
   }
@@ -27,7 +30,7 @@ export class CuentaPage implements OnInit {
     
     if(this.id != 0)
     {
-      this.servicio.Usuario_consultar(this.id)
+      this.servicio.Cliente_consultar(this.id)
       .subscribe((data:any)=>{
         console.log(data);
       // this.servicio.Mensajes(data.mensaje,data.info.item.id == 0 ? 'danger': 'success');
@@ -75,6 +78,22 @@ export class CuentaPage implements OnInit {
 
     } 
     
-  }
+  };
+  Capturar_foto()
+  {
+    this.camera.getPicture({quality: 60,
+      allowEdit:true, //permite editar la imgen 
+      targetHeight:800, //ancho
+      targetWidth:800, //alto
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }).then((imageData) => {
+     this.imagen = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      console.log(err);
+       this.servicio.Mensajes('No se capturo ninguna imagen','danger');
+    });
+  };
 
 }

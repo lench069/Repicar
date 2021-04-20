@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from 'src/app/servicios.service';
+import { Camera } from '@ionic-native/camera/ngx'; //para la camara
 
 @Component({
   selector: 'app-registro',
@@ -14,9 +15,11 @@ export class RegistroPage implements OnInit {
   public email: string = '';
   public estado: string = 'Activo';
   public contrasenia: string = '';
-  public imagen: any = '';
+  public imagen: any = '../../../assets/imagenes/avatar.jpg';
 
-  constructor(public servicio:ServiciosService) { }
+  constructor(public servicio:ServiciosService,
+    private camera:Camera //para usar la camara.
+    ) { }
 
   ngOnInit() {
   }
@@ -57,5 +60,22 @@ export class RegistroPage implements OnInit {
     } 
     
   }
+
+  Capturar_foto()
+  {
+    this.camera.getPicture({quality: 60,
+      allowEdit:true, //permite editar la imgen 
+      targetHeight:800, //ancho
+      targetWidth:800, //alto
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }).then((imageData) => {
+     this.imagen = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      console.log(err);
+       this.servicio.Mensajes('No se capturo ninguna imagen','danger');
+    });
+  };
 
 }

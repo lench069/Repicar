@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ServiciosService {
 
   //URL del servidor
-  private URL_API: string = 'http://localhost/api_repicar/'; 
+  private URL_API: string = 'http://192.168.100.19/api_repicar/'; 
 
 
   constructor(private router: Router,
@@ -24,6 +25,7 @@ export class ServiciosService {
   //permite mostrar mesajes al momento de utilizar los servicios, al usar el toast se debe definir la funcion como asycn.
   async Mensajes (texto:string, tipo:string = 'success'){
     let t = await this.toast.create({
+      //header: 'Toast header',
       message: texto,
       color: tipo,
       duration: 2000
@@ -34,6 +36,7 @@ export class ServiciosService {
 
   //***********************CLIENTES INICIO******************************************/
   Cliente_Guardar(data:any) {
+    console.log(data);
     return this.http.post(
       this.URL_API + 'registrar-cliente', 
       this.objectToFormData({
@@ -47,7 +50,7 @@ export class ServiciosService {
       }) 
       );
   };
-  Usuario_consultar(id:number) {
+  Cliente_consultar(id:number) {
     return this.http.get(
       this.URL_API + 'consultar-cliente/'+id , 
       );
@@ -58,7 +61,8 @@ export class ServiciosService {
       this.objectToFormData({
         nombres: data.nombres,
         apellidos: data.apellidos,
-        foto: data.imagen
+        foto:data.imagen
+
       }) 
       );
   };
@@ -96,6 +100,7 @@ export class ServiciosService {
 
         //***********************CLIENTES INICIO******************************************/
         Pedido_Guardar(data:any) {
+          console.log(data);
         return this.http.post(
           this.URL_API + 'registrar-pedido', 
           this.objectToFormData({
@@ -124,7 +129,9 @@ export class ServiciosService {
             call_principal:data.call_principal,
             call_secundaria:data.call_secundaria,
             telefono_env:data.telefono_env,
-            referencia:data.referencia
+            referencia:data.referencia,
+            //imagn
+            foto:data.imagen
           }) 
           );
       };

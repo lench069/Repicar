@@ -3,9 +3,12 @@
     <ion-menu side="start" menuId="first" contentId="main-content">
       <ion-header>
         <ion-toolbar color="dark">
-          <ion-avatar slot="start">
+          <ion-avatar >
             <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
           </ion-avatar>
+          <h6>Lenin Velastegui</h6>
+          <h6>Lcvelastegui@gmail.com</h6>
+          <h6 class="ion-text-center">V 1.0</h6>
         </ion-toolbar>
         <ion-item-divider color="warning"> 
         </ion-item-divider>
@@ -27,7 +30,7 @@
           </ion-item>
           <ion-item-divider > 
           </ion-item-divider>
-          <ion-item (click)="servicio.irA('/login')">
+          <ion-item (click)="servicio.irA('/registro')">
             <ion-icon slot="start" name="close-circle-outline"></ion-icon>
             <ion-label>Salir</ion-label>
           </ion-item>
