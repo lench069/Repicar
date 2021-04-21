@@ -17,6 +17,7 @@ export class CuentaPage implements OnInit {
   public estado: string = '';
   public contrasenia: string = '';
   public imagen:any = null;
+  public flag:boolean = false;
 
   constructor(public servicio:ServiciosService,
     private camera:Camera //para usar la camara.
@@ -57,6 +58,11 @@ export class CuentaPage implements OnInit {
   }
 
   Actualizar (){
+    
+    if (this.flag == false)
+    {
+      this.imagen = 'false';
+    }
     if(this.nombres == '')
     {
       this.servicio.Mensajes('Debe ingresar sus nombres.', 'warning');
@@ -81,6 +87,7 @@ export class CuentaPage implements OnInit {
   };
   Capturar_foto()
   {
+    this.flag = true;
     this.camera.getPicture({quality: 60,
       allowEdit:true, //permite editar la imgen 
       targetHeight:800, //ancho
