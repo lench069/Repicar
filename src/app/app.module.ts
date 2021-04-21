@@ -12,6 +12,9 @@ import { ServiciosService } from './servicios.service';
 import { HttpClientModule } from '@angular/common/http';
 //importante para el uso de la camara
 import { Camera } from '@ionic-native/camera/ngx';
+//para el storage
+//import { IonicStorageModule } from '@ionic/Storage';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +22,7 @@ import { Camera } from '@ionic-native/camera/ngx';
   imports: [
     HttpClientModule,
     BrowserModule, 
+    IonicStorageModule.forRoot(), 
     IonicModule.forRoot(), AppRoutingModule],
   providers: [
     ServiciosService,

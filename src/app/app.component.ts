@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ServiciosService } from './servicios.service';
+import { Storage } from '@ionic/storage-angular';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -16,7 +17,8 @@ export class AppComponent {
   public contrasenia: string = '';
   public imagen:any = null;
   
-  constructor(public servicio: ServiciosService,) {}
+  constructor(public servicio: ServiciosService,
+    private storage: Storage) {}
 
   ionViewWillEnter() //se ejecuta a penas se abra la vista
   {
@@ -46,6 +48,11 @@ export class AppComponent {
           this.servicio.irA('/login');
       });
     }
+  }
+  async logout()
+  {
+    await this.storage.clear();
+    this.servicio.irA('/login')
   }
 
 }

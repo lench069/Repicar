@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from 'src/app/servicios.service';
 import { Camera } from '@ionic-native/camera/ngx'; //para la camara
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-cuenta',
@@ -9,7 +10,7 @@ import { Camera } from '@ionic-native/camera/ngx'; //para la camara
 })
 export class CuentaPage implements OnInit {
 
-  public id:number = 4;
+  public id:number = 0;
   public nombres: string = '';
   public apellidos: string = '';
   public celular: string = '';
@@ -20,14 +21,18 @@ export class CuentaPage implements OnInit {
   public flag:boolean = false;
 
   constructor(public servicio:ServiciosService,
-    private camera:Camera //para usar la camara.
+    private camera:Camera, //para usar la camara.
+    private storage: Storage
     ) { }
 
   ngOnInit() {
   }
 
-  ionViewWillEnter() //se ejecuta a penas se abra la vista
+  async ionViewWillEnter() //se ejecuta a penas se abra la vista
   {
+    this.storage.create();
+    let usuario = await this.storage.get('session_storage');
+    this.id = usuario.ID_CLIENTE;
     
     if(this.id != 0)
     {

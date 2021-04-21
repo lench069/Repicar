@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     //modificamos la ruta para que sea la inicia
     path: '',
-    redirectTo: 'inicio',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {

@@ -33,6 +33,16 @@ export class ServiciosService {
     t.present();
 
   }
+    //***********************Login******************************************/
+    Login(data:any) {
+      return this.http.post(
+        this.URL_API + 'login-cliente', 
+        this.objectToFormData({
+          email: data.email,
+          contrasenia: data.contrasenia,
+        }) 
+        );
+    }
 
   //***********************CLIENTES INICIO******************************************/
   Cliente_Guardar(data:any) {

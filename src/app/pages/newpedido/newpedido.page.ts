@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from 'src/app/servicios.service';
 import { Camera } from '@ionic-native/camera/ngx'; //para la camara
+import { Storage } from '@ionic/storage-angular';
 
 
 @Component({
@@ -42,9 +43,11 @@ export class NewpedidoPage implements OnInit {
   public chgenerico:boolean= false;
   public choriginal:boolean=false;
   public imagen:any = null;
+  public id_cliente:number = 0;
 
   constructor(public servicio:ServiciosService,
-    private camera:Camera //para usar la camara.
+    private camera:Camera, //para usar la camara.
+    private storage: Storage
     ) { 
     
   }
@@ -52,8 +55,11 @@ export class NewpedidoPage implements OnInit {
   ngOnInit() {
   }
 
-  ionViewWillEnter() //se ejecuta a penas se abra la vista
+  async ionViewWillEnter() //se ejecuta a penas se abra la vista
   {
+    this.storage.create();
+    let usuario = await this.storage.get('session_storage');
+    this.id_cliente = usuario.ID_CLIENTE;
     if(this.id_pais != 0)
     {
       this.servicio.Provincias_por_pais(this.id_pais)
@@ -278,7 +284,7 @@ export class NewpedidoPage implements OnInit {
   {
     this.servicio.Pedido_Guardar({
       cod_pedido:this.Generar_codigo (),
-      id_cliente:4,
+      id_cliente:this.id_cliente,
       id_ciudad:this.id_ciudad,
       tipo_vehiculo:this.id_tipov,
       marca:this.id_marca,
@@ -309,48 +315,13 @@ export class NewpedidoPage implements OnInit {
     }).subscribe((data:any)=>{
     
       this.servicio.Mensajes(data.mensaje,data.info.id == 0 ? 'danger' : 'success');
-      //this.servicio.irA('/inicio');
+      this.servicio.irA('/inicio');
     },(error:any)=>{
         this.servicio.Mensajes('No se pudo realizar la peticion.','danger');
     });
   }
 
-  Guardar_datos_factura()
-  {
-    if(this.nombres_fac == '')
-    {
-      this.servicio.Mensajes('Debe ingresar un nombre para la factura.', 'warning');
-    }else if(this.ci_fac == '')
-    {
-      this.servicio.Mensajes('Debe ingresar una cedula para la factura.', 'warning');
-    }else if(this.telefono_fac == '')
-    {
-      this.servicio.Mensajes('Debe ingresar un telefono para la factura.', 'warning');
-    }else if(this.direccion_fac == '')
-    {
-      this.servicio.Mensajes('Debe ingresar un direccion para la factura.', 'warning');
-    }else if(this.email_fac == '')
-    {
-      this.servicio.Mensajes('Debe ingresar un correo para la factura.', 'warning');
-    }else{
-      this.servicio.Factura_Guardar({
-        id_cliente:4,
-        nombres:this.nombres_fac,
-        apellidos:this.apellidos_fac,
-        email:this.email_fac,
-        telefono:this.telefono_fac,
-        ci: this.ci_fac,
-        direccion: this.direccion_fac,
-      }).subscribe((data:any)=>{
-        console.log(data);
-        this.servicio.Mensajes(data.mensaje,data.info.id == 0 ? 'danger' : 'success');
-      },(error:any)=>{
-          this.servicio.Mensajes('No se pudo realizar la peticion.','danger');
-      });
-
-    } 
-  }
-
+ 
   Generar_codigo ():string
   {
     var caracteres = "ABCDEFGHJKMNPQRTUVWXYZ2346789";
