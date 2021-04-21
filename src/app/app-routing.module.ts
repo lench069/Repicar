@@ -47,7 +47,11 @@ const routes: Routes = [
   {
     path: 'envios',
     loadChildren: () => import('./pages/envios/envios.module').then( m => m.EnviosPageModule)
+  },  {
+    path: 'registropedido',
+    loadChildren: () => import('./pages/registropedido/registropedido.module').then( m => m.RegistropedidoPageModule)
   }
+
 ];
 
 @NgModule({
