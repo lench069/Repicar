@@ -13,22 +13,21 @@
 </ion-header>
 
 <ion-content>
-    <ion-item-group>
-
+    <ion-item-group *ngFor="let item of pedidos">
       <ion-item-divider color="medium">
-        <ion-label>22/02/2020</ion-label>
+        <ion-label>{{item.fecha}}</ion-label>
       </ion-item-divider>
-      <ion-item>
+      <ion-item *ngFor="let pedi of item.items">
         <ion-card>
           <ion-item >
-            <ion-label>Ubicacion: <small>Chimborazo; Riobamba</small></ion-label>
+            <ion-label>Ubicacion: <small>{{pedi.NOMBRE_PROV}}, {{pedi.NOMBRE_CIUDAD}}</small></ion-label>
           </ion-item>
           <ion-item >
             <ion-icon name="trash-outline" slot="end"></ion-icon>
-            <ion-label>Automovil: <small>Ford, Escape, 2006</small></ion-label>
+            <ion-label>Automovil: <small>{{pedi.DES_MODELO}}, {{pedi.DES_MARCA}},{{pedi.ANIO}}</small></ion-label>
           </ion-item>
           <ion-item >
-            <ion-label text-wrap>Repuesto: <small>Bomba de agua fdsf sdfds sdfds sdfsdf sdfsd sdfsd sdfsd sdfd, original</small></ion-label>
+            <ion-label text-wrap>Repuesto: <small>{{pedi.DESCRIPCION}}, {{pedi.ORIGINAL}},{{pedi.GENERICO}}</small></ion-label>
           </ion-item>
         </ion-card>
       </ion-item>    

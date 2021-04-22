@@ -108,7 +108,7 @@ export class ServiciosService {
             );
         };
 
-        //***********************CLIENTES INICIO******************************************/
+        //***********************PEDIDOS INICIO******************************************/
         Pedido_Guardar(data:any) {
           console.log(data);
         return this.http.post(
@@ -145,6 +145,13 @@ export class ServiciosService {
           }) 
           );
       };
+
+      Pedidos_Listado(data:any) {
+        return this.http.post(
+          this.URL_API + 'listar-pedidos', 
+          this.objectToFormData({id_cliente: data.id_cliente})
+          );
+      }
       //***********************CLIENTES INICIO******************************************/
       Factura_Guardar(data:any) {
       return this.http.post(
