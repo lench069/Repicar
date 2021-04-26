@@ -42,8 +42,9 @@ export class NewpedidoPage implements OnInit {
   public chservi:boolean=false;
   public chgenerico:boolean= false;
   public choriginal:boolean=false;
-  public imagen:any = null;
+  public imagen:string [] = [];
   public id_cliente:number = 0;
+ 
 
   constructor(public servicio:ServiciosService,
     private camera:Camera, //para usar la camara.
@@ -57,6 +58,7 @@ export class NewpedidoPage implements OnInit {
 
   async ionViewWillEnter() //se ejecuta a penas se abra la vista
   {
+  
     this.storage.create();
     let usuario = await this.storage.get('session_storage');
     this.id_cliente = usuario.ID_CLIENTE;
@@ -190,6 +192,9 @@ export class NewpedidoPage implements OnInit {
     }else if(this.id_tipov == 0)
     {
       this.servicio.Mensajes('Debe seleccionar un tipo de vehiculo.', 'warning');
+    }else if(this.id_marca == 0)
+    {
+      this.servicio.Mensajes('Debe seleccionar una marca.', 'warning');
     }else if(this.id_marca == 0)
     {
       this.servicio.Mensajes('Debe seleccionar una marca.', 'warning');
@@ -332,19 +337,38 @@ export class NewpedidoPage implements OnInit {
 
   Capturar_foto()
   {
-    this.camera.getPicture({quality: 60,
-      allowEdit:true, //permite editar la imgen 
-      targetHeight:800, //ancho
-      targetWidth:800, //alto
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }).then((imageData) => {
-     this.imagen = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-      console.log(err);
-       this.servicio.Mensajes('No se capturo ninguna imagen','danger');
-    });
+    console.log(this.imagen.length);
+    if(this.imagen.length > 2) 
+    {
+      this.servicio.Mensajes('Se puede cargar maximo 3 imagenes','warning');
+    }else
+    {
+      this.camera.getPicture({quality: 60,
+        allowEdit:true, //permite editar la imgen 
+        targetHeight:800, //ancho
+        targetWidth:800, //alto
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      }).then((imageData) => {
+      //this.imagen = 'data:image/jpeg;base64,' + imageData;
+  
+       this.imagen.push('data:image/jpeg;base64,' + imageData);
+       console.log(this.imagen);
+  
+      }, (err) => {
+        console.log(err);
+         this.servicio.Mensajes('No se capturo ninguna imagen','danger');
+      });
+    }
+    
   };
+
+  Borrar_foto(index){
+
+    this.imagen.splice(index, 1);
+
+
+  }
 
 }

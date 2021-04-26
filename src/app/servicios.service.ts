@@ -10,8 +10,8 @@ import { ToastController } from '@ionic/angular';
 export class ServiciosService {
 
   //URL del servidor
+  //private URL_API: string = 'http://riobytes.com/api_repicar/'; 
   private URL_API: string = 'http://192.168.100.19/api_repicar/'; 
-
 
   constructor(private router: Router,
     private http: HttpClient,

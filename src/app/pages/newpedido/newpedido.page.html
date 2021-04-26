@@ -63,6 +63,21 @@
       </ion-select-option>
     </ion-select>
   </ion-item>
+  <ion-list-header color="success">
+    Tipo de repuesto
+  </ion-list-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" class="ion-text-center">
+        <ion-label>Original</ion-label><br>
+        <ion-checkbox [(ngModel)]="choriginal"></ion-checkbox> 
+      </ion-col>
+      <ion-col size="6" class="ion-text-center">
+        <ion-label>Generico</ion-label><br>
+        <ion-checkbox [(ngModel)]="chgenerico"></ion-checkbox> 
+      </ion-col>
+    </ion-row>
+    </ion-grid>
   <ion-list-header color="primary">
     Descripcion del pedido
   </ion-list-header>
@@ -73,21 +88,17 @@
           <ion-icon name="camera-outline"></ion-icon>
         </ion-button>
     </ion-item>
-    <ion-label >
+    <div id="LoadedImages" *ngIf="imagen">
+      <ion-item *ngFor="let item of imagen; let i = index">
+          <ion-icon name="close-circle" (click)="Borrar_foto(i)"></ion-icon>
+          <img [src]="item" class="imagenes">
+      </ion-item>
+  </div>
+  <!-- <ion-label >
       <img *ngIf="imagen != null" [src]="imagen">
-    </ion-label>
+    </ion-label>--> 
 
     <ion-grid>
-      <ion-row>
-        <ion-col size="6" class="ion-text-center">
-          <ion-label>Original</ion-label><br>
-          <ion-checkbox [(ngModel)]="choriginal"></ion-checkbox> 
-        </ion-col>
-        <ion-col size="6" class="ion-text-center">
-          <ion-label>Generico</ion-label><br>
-          <ion-checkbox [(ngModel)]="chgenerico"></ion-checkbox> 
-        </ion-col>
-      </ion-row>
       <ion-row>
         <ion-col offset="1">
           <ion-checkbox [(ngModel)]="chfac" ></ion-checkbox> 
