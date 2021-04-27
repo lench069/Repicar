@@ -17,19 +17,23 @@
       <ion-item-divider color="medium">
         <ion-label>{{item.fecha}}</ion-label>
       </ion-item-divider>
-      <ion-item *ngFor="let pedi of item.items">
-        <ion-card>
-          <ion-item >
-            <ion-label>Ubicacion: <small>{{pedi.NOMBRE_PROV}}, {{pedi.NOMBRE_CIUDAD}}</small></ion-label>
+      <ion-list>
+        <ion-item-sliding  *ngFor="let pedi of item.items" #ionItemSliding> <!--Da un identificador a la etiqueta.-->
+          <ion-item>
+            <!--Text wrap permite a textos largos se escriban en las sigueintes lineas-->
+            <ion-label text-wrap>
+              <p><b>Ubicacion:</b> {{pedi.NOMBRE_PROV}}, {{pedi.NOMBRE_CIUDAD}}</p>
+              <p><b>Automovil:</b> {{pedi.MODELO}}, {{pedi.MARCA}}, {{pedi.ANIO}}</p>
+              <p><b>Repuesto:</b> {{pedi.DESCRIPCION}}, {{pedi.ORIGINAL}}, {{pedi.GENERICO}}</p>
+            </ion-label>
+            <ion-badge color="danger" side="end">{{pedi.COD_PEDIDO}}</ion-badge>
           </ion-item>
-          <ion-item >
-            <ion-icon name="trash-outline" slot="end"></ion-icon>
-            <ion-label>Automovil: <small>{{pedi.DES_MODELO}}, {{pedi.DES_MARCA}},{{pedi.ANIO}}</small></ion-label>
-          </ion-item>
-          <ion-item >
-            <ion-label text-wrap>Repuesto: <small>{{pedi.DESCRIPCION}}, {{pedi.ORIGINAL}},{{pedi.GENERICO}}</small></ion-label>
-          </ion-item>
-        </ion-card>
-      </ion-item>    
+          <ion-item-options side="end">
+            <ion-item-option color="warning" (click)="Detalles_Pedido(pedi,ionItemSliding)">Detalles</ion-item-option>
+            <ion-item-option color="danger" (click)="Borrar(pedi,ionItemSliding)">Eliminar</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
     </ion-item-group>
+
 </ion-content>

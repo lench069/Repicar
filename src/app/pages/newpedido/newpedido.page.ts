@@ -14,9 +14,9 @@ export class NewpedidoPage implements OnInit {
   public id_pais:number = 1;
   public id_provincia:number = 0;
   public id_ciudad:number = 0;
-  public id_tipov:number = 0;
-  public id_marca:number = 0;
-  public id_modelo:number = 0;
+  public tipov:string = '';
+  public marca:string = '';
+  public modelo:string = '';
   public anioselect:string='';
   public descripcion:string='';
   public estado:string='Creado';
@@ -123,7 +123,7 @@ export class NewpedidoPage implements OnInit {
       });
   };
 
-  Cargar_Marcas(id_tipov:number)
+  /*Cargar_Marcas(id_tipov:number)
   {
     this.id_tipov = id_tipov;
     if(this.id_tipov != 0)
@@ -143,9 +143,9 @@ export class NewpedidoPage implements OnInit {
       });
     }
 
-  };
+  };*/
 
-  Cargar_Modelos(id_marca:number)
+ /* Cargar_Modelos(id_marca:number)
   {
     
     this.id_marca = id_marca;
@@ -170,7 +170,7 @@ export class NewpedidoPage implements OnInit {
       this.servicio.Mensajes('Debe seleccionar una marca primero.','danger');
     }
 
-  };
+  };*/
   Cargar_Años()
   {
       let anio_actual = new Date().getFullYear() +1;
@@ -181,7 +181,7 @@ export class NewpedidoPage implements OnInit {
   };
 
   Guardar (){
-    
+   
 
     if(this.id_provincia == 0)
     {
@@ -189,16 +189,13 @@ export class NewpedidoPage implements OnInit {
     }else if(this.id_ciudad == 0)
     {
       this.servicio.Mensajes('Debe Seleccionar una ciudad.', 'warning');
-    }else if(this.id_tipov == 0)
+    }else if(this.tipov == '')
     {
       this.servicio.Mensajes('Debe seleccionar un tipo de vehiculo.', 'warning');
-    }else if(this.id_marca == 0)
+    }else if(this.marca == '')
     {
       this.servicio.Mensajes('Debe seleccionar una marca.', 'warning');
-    }else if(this.id_marca == 0)
-    {
-      this.servicio.Mensajes('Debe seleccionar una marca.', 'warning');
-    }else if(this.id_modelo == 0)
+    }else if(this.modelo == '' )
     {
       this.servicio.Mensajes('Debe seleccionar un modelo.', 'warning');
     }else if(this.anioselect == '')
@@ -291,13 +288,13 @@ export class NewpedidoPage implements OnInit {
       cod_pedido:this.Generar_codigo (),
       id_cliente:this.id_cliente,
       id_ciudad:this.id_ciudad,
-      tipo_vehiculo:this.id_tipov,
-      marca:this.id_marca,
-      modelo:this.id_modelo,
+      tipo_vehiculo:this.tipov,
+      marca:this.marca,
+      modelo:this.modelo,
       anio: this.anioselect,
       descripcion: this.descripcion,
-      original: this.choriginal == true ? "1" : "0",
-      generico: this.chgenerico == true ? "1" : "0",
+      original: this.choriginal == true ? "Original" : "",
+      generico: this.chgenerico == true ? "Generico" : "",
       factura: this.chfac,
       servicio_env: this.chservi,
       estado: this.estado,

@@ -15,7 +15,7 @@
   <ion-list>
   <ion-item>
     <ion-label>Provincia</ion-label>
-    <ion-select class="custom-options" interface="popover" [(ngModel)]="id_provincia" (ionChange)="Cargar_Ciudades(provi.value)" #provi>
+    <ion-select class="custom-options" interface="popover" [(ngModel)]="id_provincia" (ionChange)="Cargar_Ciudades(provi.value)" #provi placeholder='Seleccione'>
       <ion-select-option *ngFor="let provincia of provincias" value="{{ provincia.ID_PROVINCIA}}">
           {{ provincia.NOMBRE }}
       </ion-select-option>
@@ -23,7 +23,7 @@
   </ion-item>
   <ion-item>
     <ion-label>Ciudad</ion-label>
-    <ion-select class="custom-options" interface="popover" [(ngModel)]="id_ciudad">
+    <ion-select class="custom-options" interface="popover" [(ngModel)]="id_ciudad" placeholder='Seleccione'>
         <ion-select class="custom-options" interface="popover">
           <ion-select-option *ngFor="let ciudad of ciudades" value="{{ ciudad.ID_CIUDAD}}">
             {{ ciudad.NOMBRE }}
@@ -33,31 +33,39 @@
   </ion-item>
   <ion-item>
     <ion-label>Tipo de vehiculo</ion-label>
-    <ion-select class="custom-options" interface="popover" [(ngModel)]="id_tipov" (ionChange)="Cargar_Marcas(tipo_ve.value)" #tipo_ve>
-      <ion-select-option *ngFor="let tipo_vehivulo of tipo_vehiculos" value="{{ tipo_vehivulo.ID_TIPOV}}">
+    <ion-select class="custom-options" interface="popover" [(ngModel)]="tipov" placeholder='Seleccione'>
+      <ion-select-option *ngFor="let tipo_vehivulo of tipo_vehiculos" value="{{ tipo_vehivulo.DESCRIPCION}}">
         {{ tipo_vehivulo.DESCRIPCION }}
       </ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-item>
+<!--  <ion-item>
     <ion-label>Marca</ion-label>
     <ion-select class="custom-options" interface="popover" [(ngModel)]="id_marca" (ionChange)="Cargar_Modelos(marca.value)" #marca>
       <ion-select-option *ngFor="let marca of marcas" value="{{ marca.ID_MARCA}}">
         {{ marca.DESCRIPCION }}
       </ion-select-option>
     </ion-select>
+  </ion-item>-->
+  <ion-item>
+    <ion-label position="fixed">Marca</ion-label>
+    <ion-input [(ngModel)]="marca" placeholder="Ingrese la marca de su vehiculo" class="ion-text-right"></ion-input>
   </ion-item>
   <ion-item>
+    <ion-label position="fixed">Modelo</ion-label>
+    <ion-input [(ngModel)]="modelo" placeholder="Ingrese el modelo de su vehiculo" class="ion-text-right"></ion-input>
+  </ion-item>
+ <!-- <ion-item>
     <ion-label>Modelo</ion-label>
     <ion-select class="custom-options" interface="popover" [(ngModel)]="id_modelo">
       <ion-select-option *ngFor="let modelo of modelos"  value="{{ modelo.ID_MODELO}}">
         {{ modelo.DESCRIPCION }}
       </ion-select-option>
     </ion-select>
-  </ion-item>
+  </ion-item>-->
   <ion-item>
     <ion-label>Año</ion-label>
-    <ion-select class="custom-options" interface="popover" [(ngModel)]="anioselect">
+    <ion-select class="custom-options" interface="popover" [(ngModel)]="anioselect" placeholder='Seleccione'>
      <ion-select-option *ngFor="let anio of anios"  value="{{ anio.valor}}">
         {{ anio.valor }}
       </ion-select-option>
@@ -70,11 +78,11 @@
     <ion-row>
       <ion-col size="6" class="ion-text-center">
         <ion-label>Original</ion-label><br>
-        <ion-checkbox [(ngModel)]="choriginal"></ion-checkbox> 
+        <ion-checkbox [(ngModel)]="choriginal" ></ion-checkbox> 
       </ion-col>
       <ion-col size="6" class="ion-text-center">
         <ion-label>Generico</ion-label><br>
-        <ion-checkbox [(ngModel)]="chgenerico"></ion-checkbox> 
+        <ion-checkbox [(ngModel)]="chgenerico" ></ion-checkbox> 
       </ion-col>
     </ion-row>
     </ion-grid>
@@ -97,7 +105,9 @@
   <!-- <ion-label >
       <img *ngIf="imagen != null" [src]="imagen">
     </ion-label>--> 
-
+    <ion-list-header color="medium">
+      Opcional
+    </ion-list-header>
     <ion-grid>
       <ion-row>
         <ion-col offset="1">

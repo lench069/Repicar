@@ -152,6 +152,12 @@ export class ServiciosService {
           this.objectToFormData({id_cliente: data.id_cliente})
           );
       }
+      Pedido_consultar(id:string)
+      {
+        return this.http.get(
+          this.URL_API + 'consultar-pedido/'+id , 
+          );
+      }
       //***********************CLIENTES INICIO******************************************/
       Factura_Guardar(data:any) {
       return this.http.post(

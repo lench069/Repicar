@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController,IonItemSliding } from '@ionic/angular';
 import { ServiciosService } from 'src/app/servicios.service';
 import { Storage } from '@ionic/storage-angular';
 
@@ -43,6 +43,15 @@ export class RegistropedidoPage implements OnInit {
    },(error:any)=>{ //sentencias cuando ocurrio un error
 
    })
+ }
+ Detalles_Pedido(pedido:any, identificador:IonItemSliding)
+ {
+    identificador.close(); //para cerrar el sliding al momento de regresar a la pagina
+    this.servicio.irA('/propuestas/'+pedido.COD_PEDIDO);
+ };
+
+ Borrar_Pedido(){
+
  }
  
 
