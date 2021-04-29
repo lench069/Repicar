@@ -15,6 +15,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 //para el storage
 //import { IonicStorageModule } from '@ionic/Storage';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,9 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     HttpClientModule,
     BrowserModule, 
     IonicStorageModule.forRoot(), 
-    IonicModule.forRoot(), AppRoutingModule],
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    ComponentsModule],
   providers: [
     ServiciosService,
     Camera,

@@ -23,6 +23,7 @@ export class InicioPage implements OnInit {
     let usuario = await this.storage.get('session_storage');
     console.log(usuario);
   }
+  
 
 
 }

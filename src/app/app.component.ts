@@ -28,10 +28,6 @@ export class AppComponent {
       this.servicio.irA('/login');
     }
   }
-  async logout()
-  {
-    await this.storage.clear();
-    this.servicio.irA('/login')
-  }
+
 
 }

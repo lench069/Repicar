@@ -1,0 +1,42 @@
+
+  <ion-menu side="start" menuId="first" contentId="main-content" (ionWillOpen)="inicializar()">
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-avatar >
+          <img src="{{cliente.FOTO}}">
+        </ion-avatar>
+        <p><small>{{cliente.NOMBRES}} {{cliente.APELLIDOS}}</small> </p>
+        <p><small>{{cliente.EMAIL}}</small></p>
+        <p class="ion-text-center"><small>V 1.0</small></p>
+      </ion-toolbar>
+      <ion-item-divider color="warning"> 
+      </ion-item-divider>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle>
+        <ion-item (click)="servicio.irA('/cuenta')">
+          <ion-icon slot="start" name="person-outline"></ion-icon>
+          <ion-label>Mi cuenta</ion-label>
+        </ion-item>
+        <ion-item (click)="servicio.irA('/historial')">
+          <ion-icon slot="start" name="time-outline"></ion-icon>
+          <ion-label>Historial</ion-label>
+        </ion-item>
+        <ion-item (click)="servicio.irA('/acerca')">
+          <ion-icon slot="start" name="help-circle-outline"></ion-icon>
+          <ion-label>Acerca de la aplicación</ion-label>
+        </ion-item>
+        <ion-item-divider > 
+        </ion-item-divider>
+        <ion-item (click)="logout()">
+          <ion-icon slot="start" name="close-circle-outline"></ion-icon>
+          <ion-label>Salir</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      </ion-list>
+   
+      <br>
+    </ion-content>
+  </ion-menu>
