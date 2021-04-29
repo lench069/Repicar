@@ -27,19 +27,19 @@ export class RegistroPage implements OnInit {
   Guardar (){
     if(this.nombres == '')
     {
-      this.servicio.Mensajes('Debe ingresar sus nombres.', 'warning');
+      this.servicio.Mensajes('Debe ingresar sus nombres.', 'dark');
     }else if(this.apellidos == '')
     {
-      this.servicio.Mensajes('Debe ingresar sus apellidos.', 'warning');
+      this.servicio.Mensajes('Debe ingresar sus apellidos.', 'dark');
     }else if(this.celular == '')
     {
-      this.servicio.Mensajes('Debe ingresar un numero de celular.', 'warning');
+      this.servicio.Mensajes('Debe ingresar un numero de celular.', 'dark');
     }else if(this.email == '') 
     {
-      this.servicio.Mensajes('Debe ingresar un email.', 'warning');
+      this.servicio.Mensajes('Debe ingresar un email.', 'dark');
     }else if(this.contrasenia == '')
     {
-      this.servicio.Mensajes('Debe ingresar una contraseña.', 'warning');
+      this.servicio.Mensajes('Debe ingresar una contraseña.', 'dark');
     }else{
       this.servicio.Cliente_Guardar({
         nombres:this.nombres,
