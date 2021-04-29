@@ -12,41 +12,55 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-<ion-card>
-    <ion-card-header>
+
+
+  <ion-card color="light">
+     <ion-card-header>
      <!--<ion-card-subtitle>Card Subtitle</ion-card-subtitle>--> 
       <!--<ion-card-title>Card Title</ion-card-title>--> 
     </ion-card-header>
-
-    <ion-card-content>
+    <div class="img-wrapper">
+      <img [src]="imagen">
+      <ion-button color="light" (click)="Capturar_foto()">
+        <ion-icon slot="icon-only" name="camera-outline" color="medium">
+        </ion-icon>
+      </ion-button>
+    </div>
+    <ion-card-content class="ion-text-center">
+      <h2>Zahra Zamin</h2>
+      <ion-text color="medium">
+        <div style="display: flex;" class="ion-justify-content-center">
+          <ion-icon name="location-outline" color="medium">
+          </ion-icon>
+          <p>2345 Street, Ohio, USA.</p>
+        </div>
+      </ion-text>
       <ion-list>
-        <ion-avatar class="image-center" (click)="Capturar_foto()">
-          <img [src]="imagen">
-        </ion-avatar>
-        <ion-item>
-          <ion-label position="stacked">Nombres:</ion-label>
-          <ion-input [(ngModel)]="nombres"></ion-input>
-          <ion-buttons slot="end">
-            <ion-icon name="color-wand-outline"></ion-icon>
-          </ion-buttons>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Apellidos:</ion-label>
-          <ion-input [(ngModel)]="apellidos" ></ion-input>
-          <ion-buttons slot="end">
-            <ion-icon name="color-wand-outline"></ion-icon>
-          </ion-buttons>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Email:</ion-label>
-          <ion-input [(ngModel)]="email" disabled></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Celular:</ion-label>
-          <ion-input [(ngModel)]="celular" disabled></ion-input>
-        </ion-item>
-      </ion-list>
+      <ion-item>
+        <ion-label position="stacked">Nombres:</ion-label>
+        <ion-input [(ngModel)]="nombres"></ion-input>
+        <ion-buttons slot="end">
+          <ion-icon name="color-wand-outline"></ion-icon>
+        </ion-buttons>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Apellidos:</ion-label>
+        <ion-input [(ngModel)]="apellidos" ></ion-input>
+        <ion-buttons slot="end">
+          <ion-icon name="color-wand-outline"></ion-icon>
+        </ion-buttons>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Email:</ion-label>
+        <ion-input [(ngModel)]="email" disabled></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Celular:</ion-label>
+        <ion-input [(ngModel)]="celular" disabled></ion-input>
+      </ion-item>
+    </ion-list>
     </ion-card-content>
   </ion-card>
+
   <ion-button expand="block" (click)="Actualizar()">GUARDAR CAMBIOS</ion-button>
 </ion-content>

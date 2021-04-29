@@ -7,17 +7,21 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-<ion-card>
+<ion-card color="light">
     <ion-card-header>
      <!--<ion-card-subtitle>Card Subtitle</ion-card-subtitle>--> 
       <!--<ion-card-title>Card Title</ion-card-title>--> 
     </ion-card-header>
+    <div class="img-wrapper">
+      <img [src]="imagen">
+      <ion-button color="light" (click)="Capturar_foto()">
+        <ion-icon slot="icon-only" name="camera-outline" color="medium">
+        </ion-icon>
+      </ion-button>
+    </div>
 
     <ion-card-content>
       <ion-list>
-        <ion-avatar class="image-center" (click)="Capturar_foto()">
-          <img [src]="imagen">
-        </ion-avatar>
         <ion-item>
           <ion-label position="floating">Nombres:</ion-label>
           <ion-input [(ngModel)]="nombres"></ion-input>

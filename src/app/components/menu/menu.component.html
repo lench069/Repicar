@@ -2,12 +2,23 @@
   <ion-menu side="start" menuId="first" contentId="main-content" (ionWillOpen)="inicializar()">
     <ion-header>
       <ion-toolbar color="dark">
-        <ion-avatar >
-          <img src="{{cliente.FOTO}}">
-        </ion-avatar>
-        <p><small>{{cliente.NOMBRES}} {{cliente.APELLIDOS}}</small> </p>
-        <p><small>{{cliente.EMAIL}}</small></p>
-        <p class="ion-text-center"><small>V 1.0</small></p>
+        
+        <ion-card color="dark">
+         <div class="img-wrapper">
+            <img src="{{cliente.FOTO}}">
+         </div>
+         <ion-card-content>
+           <h3>{{cliente.NOMBRES}} {{cliente.APELLIDOS}}</h3>
+           <ion-text color="medium">
+             <div style="display: flex;">
+               <p> {{cliente.EMAIL}}</p>
+             </div>
+             <div style="display: flex;" class="ion-justify-content-center">
+              <p>Version. 1.0</p>
+            </div>
+           </ion-text>
+         </ion-card-content>
+        </ion-card>
       </ion-toolbar>
       <ion-item-divider color="warning"> 
       </ion-item-divider>
@@ -38,5 +49,6 @@
       </ion-list>
    
       <br>
+      
     </ion-content>
   </ion-menu>
