@@ -41,7 +41,9 @@ export class RegistropedidoPage implements OnInit {
      this.pedidos = data;
      l.dismiss();//quita el loading una vez cargue todo
    },(error:any)=>{ //sentencias cuando ocurrio un error
-
+    this.servicio.Mensajes('Compruebe su conexion a internet.','danger');
+      l.dismiss();//quita el loading una vez cargue todo
+      this.servicio.irA('/inicio');
    })
  }
  Detalles_Pedido(pedido:any, identificador:IonItemSliding)

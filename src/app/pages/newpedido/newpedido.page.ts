@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from 'src/app/servicios.service';
 import { Camera } from '@ionic-native/camera/ngx'; //para la camara
 import { Storage } from '@ionic/storage-angular';
+import { LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -48,7 +49,8 @@ export class NewpedidoPage implements OnInit {
 
   constructor(public servicio:ServiciosService,
     private camera:Camera, //para usar la camara.
-    private storage: Storage
+    private storage: Storage,
+    public loading: LoadingController
     ) { 
     
   }
@@ -180,32 +182,42 @@ export class NewpedidoPage implements OnInit {
       }   
   };
 
-  Guardar (){
-   
+  async Guardar (){
+    let l = await this.loading.create(); //se crea el loading
+    l.present(); //se muestra el loading
 
     if(this.id_provincia == 0)
     {
       this.servicio.Mensajes('Debe seleccionar una provincia.', 'warning');
+      l.dismiss();//quita el loading una vez cargue todo
     }else if(this.id_ciudad == 0)
     {
       this.servicio.Mensajes('Debe Seleccionar una ciudad.', 'warning');
+      l.dismiss();//quita el loading una vez cargue todo
     }else if(this.tipov == '')
     {
       this.servicio.Mensajes('Debe seleccionar un tipo de vehiculo.', 'warning');
+      l.dismiss();//quita el loading una vez cargue todo
     }else if(this.marca == '')
     {
+      l.dismiss();//quita el loading una vez cargue todo
       this.servicio.Mensajes('Debe seleccionar una marca.', 'warning');
+
     }else if(this.modelo == '' )
     {
+      l.dismiss();//quita el loading una vez cargue todo
       this.servicio.Mensajes('Debe seleccionar un modelo.', 'warning');
     }else if(this.anioselect == '')
     {
+      l.dismiss();//quita el loading una vez cargue todo
       this.servicio.Mensajes('Debe seleccionar un año.', 'warning');
     }else if(this.descripcion == '')
     {
+      l.dismiss();//quita el loading una vez cargue todo
       this.servicio.Mensajes('Debe ingresar una descripcion del pedido.', 'warning');
     }else if(this.chgenerico == false && this.choriginal == false)  
     {
+      l.dismiss();//quita el loading una vez cargue todo
       this.servicio.Mensajes('Debe seleccionar genrico u original.', 'warning');
     }
 
@@ -214,42 +226,54 @@ export class NewpedidoPage implements OnInit {
             console.log('aa')
             if(this.nombres_fac == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar un nombre para la factura.', 'warning');
             }else if(this.ci_fac == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar una cedula para la factura.', 'warning');
             }else if(this.telefono_fac == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar un telefono para la factura.', 'warning');
             }else if(this.direccion_fac == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar un direccion para la factura.', 'warning');
             }else if(this.email_fac == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar un correo para la factura.', 'warning');
             }
             
             else if (this.chservi == true)
           {
+            l.dismiss();//quita el loading una vez cargue todo
             console.log('bb');
             if(this.cprincipal == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar una calle principal.', 'warning');
             }else if(this.csecundaria == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar una calle secundaria', 'warning');
             }else if(this.telefono_env == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar un telefono para el envio', 'warning');
             }else if(this.referencia == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar una referencia para el envio', 'warning');
             }else{
               this.Guaradr_service();
+              l.dismiss();//quita el loading una vez cargue todo
             }
           }else 
             {
               this.Guaradr_service();
+              l.dismiss();//quita el loading una vez cargue todo
             }
     }
     else if (this.chservi == true)
@@ -257,24 +281,30 @@ export class NewpedidoPage implements OnInit {
             console.log('bb');
             if(this.cprincipal == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar una calle principal.', 'warning');
             }else if(this.csecundaria == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar una calle secundaria', 'warning');
             }else if(this.telefono_env == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar un telefono para el envio', 'warning');
             }else if(this.referencia == '')
             {
+              l.dismiss();//quita el loading una vez cargue todo
               this.servicio.Mensajes('Debe ingresar una referencia para el envio', 'warning');
             }else{
               this.Guaradr_service();
+              l.dismiss();//quita el loading una vez cargue todo
             }
              
     }else 
     {
       console.log('solo');
       this.Guaradr_service();
+      l.dismiss();//quita el loading una vez cargue todo
     }
     
   
