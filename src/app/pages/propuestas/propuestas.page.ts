@@ -15,6 +15,7 @@ export class PropuestasPage implements OnInit {
   public fecha_pedido:string='';
   public hora_pedido:string='';
   public propuestas:any[]=[];
+ 
 
   constructor(private servicio:ServiciosService,
     public route:ActivatedRoute,
