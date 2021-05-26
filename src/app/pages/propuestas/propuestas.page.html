@@ -43,53 +43,99 @@
         </ion-item-options>
       </ion-item-sliding>
   </ion-list>
-
-
-    <ion-list *ngFor="let propuesta of propuestas; let i = index">
-    <ion-list-header color="primary">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            PROPUESTA {{i + 1}}:
-          </ion-col>
-          <ion-col>
-            {{propuesta.FECHA_INI|slice:0:10}}
-          </ion-col>
-          <ion-col>
-            {{propuesta.FECHA_INI|slice:11:16}}
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-                  
-    </ion-list-header>
-    <ion-card>
-      <ion-item>
-        <ion-label text-wrap>Ubicación: {{propuesta.NOMBRE_PROVIN}}, {{propuesta.NOMBRE_CIUDAD}}, {{propuesta.SECTOR}}</ion-label>
-        <ion-button fill="outline" slot="end">New</ion-button>
-      </ion-item>
-    
-      <ion-card-content>
-        <ion-item>
-          <ion-label position="fixed">Original:</ion-label>
-          <ion-input  disabled>{{propuesta.P_ORIGINAL|currency}} dólares</ion-input>
-          <ion-checkbox *ngIf="propuesta.FACTURA == 1" checked="true"  disabled></ion-checkbox> 
-          <ion-checkbox *ngIf="propuesta.FACTURA == 0" checked="false"  disabled></ion-checkbox> 
-            <ion-label>Factura</ion-label>
+  <!--PARA LAS PROPUESTAS EN ESTADO ACEPTADO-->
+  <div [hidden]="!mostrarPropuestaAceptada">
+    <ion-list >
+      <ion-list-header color="primary">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              PROPUESTA ACEPTADA
+            </ion-col>
+            <ion-col>
+              {{propuestaAceptada.FECHA_INI|slice:0:10}}
+            </ion-col>
+            <ion-col>
+              {{propuestaAceptada.FECHA_INI|slice:11:16}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+                    
+      </ion-list-header>
+      <ion-card>
+        <ion-item  class="ion-activated">
+          <ion-label text-wrap color="success">Por favor, comunicate con el proveedor y facilitale el codigo del pedido para concluir con la transaccion</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label position="fixed">Génerico:</ion-label>
-          <ion-input  disabled>{{propuesta.P_GENERICO|currency}} dólares</ion-input>
-          <ion-checkbox  *ngIf="propuesta.ENVIO == 1" checked="true"  disabled></ion-checkbox> 
-          <ion-checkbox  *ngIf="propuesta.ENVIO == 0" checked="false"  disabled></ion-checkbox> 
-            <ion-label>Envio...</ion-label>
+          <ion-label text-wrap>Ubicación: {{propuestaAceptada.NOMBRE_PROVIN}}, {{propuestaAceptada.NOMBRE_CIUDAD}}, {{propuestaAceptada.SECTOR}}</ion-label>
         </ion-item>
+      
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="fixed">Original:</ion-label>
+            <ion-input  disabled>{{propuestaAceptada.P_ORIGINAL|currency}} dólares</ion-input>
+            <ion-checkbox *ngIf="propuestaAceptada.FACTURA == 1" checked="true"  disabled></ion-checkbox> 
+            <ion-checkbox *ngIf="propuestaAceptada.FACTURA == 0" checked="false"  disabled></ion-checkbox> 
+              <ion-label>Factura</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label position="fixed">Génerico:</ion-label>
+            <ion-input  disabled>{{propuestaAceptada.P_GENERICO|currency}} dólares</ion-input>
+            <ion-checkbox  *ngIf="propuestaAceptada.ENVIO == 1" checked="true"  disabled></ion-checkbox> 
+            <ion-checkbox  *ngIf="propuestaAceptada.ENVIO == 0" checked="false"  disabled></ion-checkbox> 
+              <ion-label>Envio...</ion-label>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+<!--PARA LAS PROPUESTAS EN ESTADO COTIZADO-->
+    <div [hidden]="!mostrarPropuestasCotizadas">
+      <ion-list *ngFor="let propuesta of propuestas; let i = index" >
+        <ion-list-header color="primary">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                PROPUESTA {{i + 1}}:
+              </ion-col>
+              <ion-col>
+                {{propuesta.FECHA_INI|slice:0:10}}
+              </ion-col>
+              <ion-col>
+                {{propuesta.FECHA_INI|slice:11:16}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+                      
+        </ion-list-header>
+        <ion-card>
+          <ion-item>
+            <ion-label text-wrap>Ubicación: {{propuesta.NOMBRE_PROVIN}}, {{propuesta.NOMBRE_CIUDAD}}, {{propuesta.SECTOR}}</ion-label>
+            <ion-button fill="outline" slot="end">New</ion-button>
+          </ion-item>
         
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
+          <ion-card-content>
+            <ion-item>
+              <ion-label position="fixed">Original:</ion-label>
+              <ion-input  disabled>{{propuesta.P_ORIGINAL|currency}} dólares</ion-input>
+              <ion-checkbox *ngIf="propuesta.FACTURA == 1" checked="true"  disabled></ion-checkbox> 
+              <ion-checkbox *ngIf="propuesta.FACTURA == 0" checked="false"  disabled></ion-checkbox> 
+                <ion-label>Factura</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label position="fixed">Génerico:</ion-label>
+              <ion-input  disabled>{{propuesta.P_GENERICO|currency}} dólares</ion-input>
+              <ion-checkbox  *ngIf="propuesta.ENVIO == 1" checked="true"  disabled></ion-checkbox> 
+              <ion-checkbox  *ngIf="propuesta.ENVIO == 0" checked="false"  disabled></ion-checkbox> 
+                <ion-label>Envio...</ion-label>
+            </ion-item>
+         <div style="text-align: right;">
+          <ion-button color="warning" (click)="aceptarPropuesta(propuesta)">Aceptar</ion-button>
+         </div> 
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
 
-  
-
-
-
+    </div>
+    
 </ion-content>

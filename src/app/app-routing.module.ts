@@ -55,7 +55,12 @@ const routes: Routes = [
   {
     path: 'propuestas/:cod_pedido',
     loadChildren: () => import('./pages/propuestas/propuestas.module').then( m => m.PropuestasPageModule)
+  },
+  {
+    path: 'datosproveedor/:cod_proveedor',
+    loadChildren: () => import('./pages/datosproveedor/datosproveedor.module').then( m => m.DatosproveedorPageModule)
   }
+
 
 ];
 

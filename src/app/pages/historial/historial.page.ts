@@ -19,17 +19,19 @@ export class HistorialPage implements OnInit {
 
   ngOnInit() {
   }
+
   async ionViewWillEnter() //se ejecuta a penas se abra la vista
   {
     this.storage.create();
     let usuario = await this.storage.get('session_storage');
     this.id_cliente = usuario.ID_CLIENTE;
-    this.Cargar_Pedidos();
+    this.Cargar_Pedidos_Historial();
   };
-  async Cargar_Pedidos() {
+
+  async Cargar_Pedidos_Historial() {
     let l = await this.loading.create(); //se crea el loading
     l.present(); //se muestra el loading
-   this.servicio.Pedidos_Listado({
+   this.servicio.Pedidos_Listado_Historial({
       id_cliente: this.id_cliente
    }) // llamado al servicio
    .subscribe((data:any)=>{   //promesa espera hasta que regrese la data aqui va cuando fue exitoso

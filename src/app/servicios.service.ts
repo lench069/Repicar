@@ -152,6 +152,12 @@ export class ServiciosService {
           this.objectToFormData({id_cliente: data.id_cliente})
           );
       }
+      Pedidos_Listado_Historial(data:any) {
+        return this.http.post(
+          this.URL_API + 'listar-pedidos-historial', 
+          this.objectToFormData({id_cliente: data.id_cliente})
+          );
+      }
       Pedido_consultar(id:string)
       {
         return this.http.get(
@@ -173,6 +179,25 @@ export class ServiciosService {
         }) 
         );
     };
+    /**************PROPUESTA********************* */
+    Cliente_Acepta_Propuesta(data:any) {
+      console.log(data);
+      return this.http.post(
+        this.URL_API + 'cliente-acepta-propuesta/'+data, 
+        this.objectToFormData({
+          estado: 'Aceptado'
+  
+        }) 
+        );
+    };
+
+    /**********************PROVEEDOR******************* */
+    proveedor_consultar(id:string)
+    {
+      return this.http.get(
+        this.URL_API + 'consultar-proveedor/'+id , 
+        );
+    }
 
 
 
