@@ -19,12 +19,17 @@ export class DatosproveedorPage implements OnInit {
   public celular:string='';
   public sector:string='';
   public direccion:string='';
+  public arregloDeSubCadenas:string[] = [];
 
   constructor(private servicio:ServiciosService,
     public route:ActivatedRoute,
     public loading: LoadingController,) 
     {
-      this.id = this.route.snapshot.params.cod_proveedor
+      this.id = this.route.snapshot.params.cod_proveedor;
+      const separador = "&"; // un espacio en blanco
+      const limite    = 2;
+      this.arregloDeSubCadenas = this.id.split(separador, limite);
+      console.log(this.arregloDeSubCadenas[0]);
      }
 
   ngOnInit() {
@@ -35,9 +40,9 @@ export class DatosproveedorPage implements OnInit {
     let l = await this.loading.create(); //se crea el loading
     l.present(); //se muestra el loading
     
-    if(this.id != '')
+    if(this.arregloDeSubCadenas[0] != '')
     {
-      this.servicio.proveedor_consultar(this.id)
+      this.servicio.proveedor_consultar(this.arregloDeSubCadenas[0])
       .subscribe((data:any)=>{
         console.log(data);
       // this.servicio.Mensajes(data.mensaje,data.info.item.id == 0 ? 'danger': 'success');
@@ -58,7 +63,7 @@ export class DatosproveedorPage implements OnInit {
         }else{
           l.dismiss();//quita el loading una vez cargue todo
           this.servicio.Mensajes('El proveedor que desea consultar no existe.','danger');
-          this.servicio.irA('/registropedido');
+         this.servicio.irA('/registropedido');
           
         }
         

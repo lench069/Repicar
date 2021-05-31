@@ -38,7 +38,11 @@ export class RegistropedidoPage implements OnInit {
    }) // llamado al servicio
    .subscribe((data:any)=>{   //promesa espera hasta que regrese la data aqui va cuando fue exitoso
     console.log(data);
-     this.pedidos = data;
+    if(data.length > 0)
+    {
+      this.pedidos = data;
+    }
+     this.servicio.Mensajes('Aun no tienes pedidos.','warning');
      l.dismiss();//quita el loading una vez cargue todo
    },(error:any)=>{ //sentencias cuando ocurrio un error
     this.servicio.Mensajes('Compruebe su conexion a internet.','danger');
