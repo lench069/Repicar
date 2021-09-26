@@ -41,8 +41,9 @@ export class RegistropedidoPage implements OnInit {
     if(data.length > 0)
     {
       this.pedidos = data;
+    }else {
+      this.servicio.Mensajes('Aun no tienes pedidos.','warning');
     }
-     this.servicio.Mensajes('Aun no tienes pedidos.','warning');
      l.dismiss();//quita el loading una vez cargue todo
    },(error:any)=>{ //sentencias cuando ocurrio un error
     this.servicio.Mensajes('Compruebe su conexion a internet.','danger');

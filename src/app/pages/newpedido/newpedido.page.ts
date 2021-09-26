@@ -3,6 +3,7 @@ import { ServiciosService } from 'src/app/servicios.service';
 import { Camera } from '@ionic-native/camera/ngx'; //para la camara
 import { Storage } from '@ionic/storage-angular';
 import { LoadingController } from '@ionic/angular';
+import { AdmobService } from 'src/app/services/admob.service';
 
 
 @Component({
@@ -50,12 +51,14 @@ export class NewpedidoPage implements OnInit {
   constructor(public servicio:ServiciosService,
     private camera:Camera, //para usar la camara.
     private storage: Storage,
-    public loading: LoadingController
+    public loading: LoadingController,
+    private admobService:AdmobService
     ) { 
     
   }
 
   ngOnInit() {
+    //this.admobService.QuitarBanner();
   }
 
   async ionViewWillEnter() //se ejecuta a penas se abra la vista
@@ -347,6 +350,7 @@ export class NewpedidoPage implements OnInit {
     }).subscribe((data:any)=>{
     
       this.servicio.Mensajes(data.mensaje,data.info.id == 0 ? 'danger' : 'success');
+      this.servicio.verPublicidadMixta(); // publicidad mixta
       this.servicio.irA('/inicio');
     },(error:any)=>{
         this.servicio.Mensajes('No se pudo realizar la peticion.','danger');

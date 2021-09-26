@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { AdmobService } from './services/admob.service';
 
 
 @Injectable({
@@ -15,7 +16,8 @@ export class ServiciosService {
 
   constructor(private router: Router,
     private http: HttpClient,
-    private toast: ToastController,) { }
+    private toast: ToastController,
+    private admobService: AdmobService) { }
 
   irA (url:string)
   {
@@ -226,6 +228,21 @@ export class ServiciosService {
     }
     return fd;
   };
+
+
+  randomIntFromInterval(min,max) // min and max included
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+  verPublicidadMixta()
+  {
+    if(this.randomIntFromInterval(0,1)==1){
+      this.admobService.MostrarInterstitial();
+    }else{
+      this.admobService.MostrarRewardVideo();
+    }
+  }
 }
 
 

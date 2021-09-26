@@ -16,6 +16,10 @@ import { Camera } from '@ionic-native/camera/ngx';
 //import { IonicStorageModule } from '@ionic/Storage';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { ComponentsModule } from './components/components.module';
+//IMPORTAMOS ADMOB FREE.
+import { AdMobFree } from '@ionic-native/admob-free/ngx';
+//IMPORTAMOS SERVICIO ADMOB PROPIO.
+import { AdmobService } from './services/admob.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +35,10 @@ import { ComponentsModule } from './components/components.module';
     ServiciosService,
     Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    //AÑADIMOS ADMOB COMO PROVIDER
+    AdMobFree,
+    //AÑADIMOS NUESTRO SERVICIO.
+    AdmobService,
   ],
   bootstrap: [AppComponent],
 })

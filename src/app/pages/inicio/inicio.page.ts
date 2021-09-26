@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from 'src/app/servicios.service';
 import { Storage } from '@ionic/storage-angular';
+//IMPORTAMOS NUESTRO SERVICIO
+import { AdmobService } from 'src/app/services/admob.service';
 
 @Component({
   selector: 'app-inicio',
@@ -10,11 +12,12 @@ import { Storage } from '@ionic/storage-angular';
 export class InicioPage implements OnInit {
 
   constructor(public servicio:ServiciosService,
-    private storage: Storage) { 
+    private storage: Storage,private admobService: AdmobService) { 
      
   }
 
   ngOnInit() {
+    this.admobService.MostrarBanner();
   }
 
   async ionViewWillEnter() //se ejecuta a penas se abra la vista
