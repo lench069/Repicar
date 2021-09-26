@@ -76,9 +76,9 @@ export class AdmobService {
       this.admobFree.interstitial.show().then(() => {
         console.log('INTERSTITIAL CARGADO CORRECTAMENTE')
       })
-        .catch(e => console.log('PROBLEMA MOSTRANDO REWARD VIDEO: ', e));
+        .catch(e => console.log('PROBLEMA MOSTRANDO INTERSTITIAL: ', e));
     })
-      .catch(e => console.log('PROBLEMA CARGANDO REWARD VIDEO: ', e));
+      .catch(e => console.log('PROBLEMA CARGANDO INTERSTITIAL: ', e));
   }
   MostrarRewardVideo() {
     //COMPROBAR QUE EL REWARDVIDEO ESTA LISTO

@@ -92,6 +92,7 @@ export class PropuestasPage implements OnInit {
 
   async aceptarPropuesta(item: any) {
     console.log(item);
+    this.servicio.verPublicidadMixta(); // publicidad mixta
     let alert = await this.alert.create({
       header: 'Alerta',
       message: 'Al aceptar se compromete a realizar la compra con el vendedor escogido. La aplicacion no se hace responsable de problemas durante la transaccion. Tanto vendedor como comprado calificaran la transaccion realizada, ¿esta de acuerdo?',

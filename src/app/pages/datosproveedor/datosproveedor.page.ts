@@ -75,5 +75,10 @@ export class DatosproveedorPage implements OnInit {
       });
     }
   }
+  Aceptar()
+  {
+    this.servicio.verPublicidadMixta();
+    this.servicio.irA('/inicio');
+  }
 
 }
