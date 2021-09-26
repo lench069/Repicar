@@ -46,6 +46,18 @@ export class ServiciosService {
         );
     }
 
+    //***********************INICIO************* */
+
+    total_pedidos(data:any) {
+      return this.http.post(
+        this.URL_API + 'total-pedidos', 
+        this.objectToFormData({
+          id_cliente: data.id_cliente,
+        }) 
+        );
+    }
+
+
   //***********************CLIENTES INICIO******************************************/
   Cliente_Guardar(data:any) {
     console.log(data);
