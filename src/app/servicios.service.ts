@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Push,PushObject,PushOptions } from '@ionic-native/push/ngx';
 import { ToastController } from '@ionic/angular';
 import { AdmobService } from './services/admob.service';
 
@@ -17,7 +18,9 @@ export class ServiciosService {
   constructor(private router: Router,
     private http: HttpClient,
     private toast: ToastController,
-    private admobService: AdmobService) { }
+    private admobService: AdmobService,
+    private push:Push
+    ) { }
 
   irA (url:string)
   {
@@ -255,6 +258,53 @@ export class ServiciosService {
       this.admobService.MostrarRewardVideo();
     }
   }
+
+  Inicializar_Notificaciones()
+  {
+      // to check if we have permission
+      this.push.hasPermission()
+      .then((res: any) => {
+
+        if (res.isEnabled) {
+          
+          // Create a channel (Android O and above). You'll need to provide the id, description and importance properties.
+          this.push.createChannel({
+            id: "canalpropio",
+            description: "repicar",
+            importance: 3,
+            badge: false
+          }).then(() => console.log('Channel created'));
+
+          const options: PushOptions = {
+            android: {},
+            ios: {
+                alert: 'true',
+                badge: true,
+                sound: 'false'
+            },
+            windows: {},
+            browser: {
+                pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+            }
+         }
+
+         const pushObject: PushObject = this.push.init(options);
+
+         //Recibe todas las notificaciones
+         pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
+         //El que indica el toquen que le corresponde al dispositivo
+        pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
+        //Cuando ocurre un error
+        pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
+
+
+        } else {
+          this.Mensajes('La aplicacion no tiene permisos para recibir notificaciones');
+        }
+
+      });
+  }
+
 }
 
 

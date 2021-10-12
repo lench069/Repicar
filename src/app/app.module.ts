@@ -20,6 +20,10 @@ import { ComponentsModule } from './components/components.module';
 import { AdMobFree } from '@ionic-native/admob-free/ngx';
 //IMPORTAMOS SERVICIO ADMOB PROPIO.
 import { AdmobService } from './services/admob.service';
+//Push
+import { Push} from '@ionic-native/push/ngx';
+//ANdroid permission
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +38,10 @@ import { AdmobService } from './services/admob.service';
   providers: [
     ServiciosService,
     Camera,
+    //Push
+    Push,
+  //Permission
+    AndroidPermissions,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     //AÑADIMOS ADMOB COMO PROVIDER
     AdMobFree,
