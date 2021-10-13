@@ -45,8 +45,9 @@
         "@types/node": "^12.11.1",
         "codelyzer": "^6.0.0",
         "cordova-admob-sdk": "^0.24.1",
-        "cordova-android": "^8.0.0",
+        "cordova-android": "9.1.0",
         "cordova-plugin-admob-free": "^0.27.0",
+        "cordova-plugin-android-permissions": "^1.1.2",
         "cordova-plugin-camera": "^4.1.0",
         "cordova-plugin-device": "^2.0.2",
         "cordova-plugin-ionic-keyboard": "^2.2.0",
@@ -87,7 +88,12 @@
             "cordova-plugin-ionic-keyboard": {},
             "cordova-plugin-admob-free": {
                 "ADMOB_APP_ID": "ca-app-pub-3333295375984813~5302937841"
-            }
+            },
+            "phonegap-plugin-push": {
+                "ANDROID_SUPPORT_V13_VERSION": "27.+",
+                "FCM_VERSION": "17.0.+"
+            },
+            "cordova-plugin-android-permissions": {}
         },
         "platforms": [
             "android"
