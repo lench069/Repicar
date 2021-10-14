@@ -104,7 +104,7 @@ export class PropuestasPage implements OnInit {
               message: 'Aceptando propuesta...'
             });
             l.present();
-            this.servicio.Cliente_Acepta_Propuesta(item.ID_PROPUESTA)
+            this.servicio.Cliente_Acepta_Propuesta({id_propuesta:item.ID_PROPUESTA, cod_pedido: item.COD_PEDIDO})
               .subscribe((data: any) => {
                 this.servicio.irA('/datosproveedor/'+item.CI_RUC+'&'+item.COD_PEDIDO);
                 l.dismiss();
