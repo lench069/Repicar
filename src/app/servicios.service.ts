@@ -197,9 +197,10 @@ export class ServiciosService {
     Cliente_Acepta_Propuesta(data:any) {
       console.log(data);
       return this.http.post(
-        this.URL_API + 'cliente-acepta-propuesta/'+data, 
+        this.URL_API + 'cliente-acepta-propuesta/'+data.id_propuesta, 
         this.objectToFormData({
-          estado: 'Aceptado'
+          estado: 'Aceptado',
+          cod_pedido: data.cod_pedido
   
         }) 
         );
