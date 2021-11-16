@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "436224810788",
+    "project_id": "repicarapp",
+    "storage_bucket": "repicarapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436224810788:android:31df2a1da1d9e3a04fddb1",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436224810788-cd29eosv0fag4m9alb3328tltbq8il86.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgFQ39IC6aQPnhq9XgqUFK9zEWQqgfFPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436224810788-cd29eosv0fag4m9alb3328tltbq8il86.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
