@@ -1,7 +1,8 @@
 {
   "name": "RepiCar",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }
