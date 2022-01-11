@@ -33,9 +33,7 @@ export class InicioPage implements OnInit {
     ]).then((data: any) => {
 
     });
-    this.servicio.Inicializar_Notificacion();
-    //Publicidad
-    this.admobService.MostrarBanner();
+
   }
 
   async ionViewWillEnter() //se ejecuta a penas se abra la vista
@@ -44,6 +42,10 @@ export class InicioPage implements OnInit {
     let usuario = await this.storage.get('session_storage');
     this.id = usuario.ID_CLIENTE;
     console.log(usuario);
+    //PUSH
+    this.servicio.Inicializar_Notificacion(usuario);
+    //Publicidad
+    this.admobService.MostrarBanner();
     this.total_Pedidos();
   }
 
