@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+//PUSH
+import { Push, PushObject  } from '@ionic-native/push/ngx';
 import { ToastController } from '@ionic/angular';
 import { AdmobService } from './services/admob.service';
 
@@ -17,7 +19,9 @@ export class ServiciosService {
   constructor(private router: Router,
     private http: HttpClient,
     private toast: ToastController,
-    private admobService: AdmobService) { }
+    private admobService: AdmobService,
+    private push: Push
+    ) { }
 
   irA (url:string)
   {
@@ -87,6 +91,17 @@ export class ServiciosService {
         apellidos: data.apellidos,
         foto:data.imagen
 
+      }) 
+      );
+  };
+
+  Cliente_Actualizar_Token(id_cliente:any,token:any) {
+    console.log("resivo");
+    console.log(id_cliente,token);
+    return this.http.post(
+      this.URL_API + 'actualizar-token/'+id_cliente, 
+      this.objectToFormData({
+        token: token
       }) 
       );
   };
@@ -256,6 +271,76 @@ export class ServiciosService {
       this.admobService.MostrarRewardVideo();
     }
   }
+
+  //NOTIFICACIONES PUSH
+
+  Inicializar_Notificacion(usuario:any) {
+    this.push.hasPermission()
+      .then((res: any) => {
+
+        if (res.isEnabled) {
+          this.push.createChannel({
+            id: "canalpropio",
+            description: "InventarioApp",
+            importance: 3,
+            badge: false,
+          }).then(() => console.log('Channel created'));
+
+          const pushObject: PushObject = this.push.init({
+            android: {
+
+            },
+            ios: {
+              alert: 'true',
+              badge: true,
+              sound: 'true'
+            },
+            windows: {},
+            browser: {
+              pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+            }
+          });
+
+          pushObject.on('notification').subscribe(async (notification: any) => {
+            console.log(notification.message);
+            console.log(notification.title);
+            console.log(notification.count);
+            console.log(notification.sound);
+            console.log(notification.image);
+            console.log(notification.additionalData);
+            console.log(notification.vibrate);
+            let alert = await this.toast.create({
+              header: notification.title,
+              message: notification.message,
+              buttons: [
+                {
+                  text: 'Cerrar'
+                }
+              ]
+            });
+            alert.present();
+            console.log('Notificación: ', notification);
+          });
+
+          pushObject.on('registration').subscribe((registration: any) => {
+            console.log('Dispositivo: ', registration);
+            this.Cliente_Actualizar_Token(usuario.ID_CLIENTE,registration.registrationId).subscribe((data:any)=>{
+              this.Mensajes(data.mensaje,data.info.id == 0 ? 'danger' : 'success');
+            },(error:any)=>{
+                this.Mensajes('No se pudo realizar la peticion.','danger');
+            });
+          });
+
+          pushObject.on('error').subscribe(error => {
+            console.error('Error with Push plugin', error)
+          });
+        } else {
+          this.Mensajes('La aplicación no tiene permisos para recibir notificaciones.');
+        }
+
+      });
+  }
+
 }
 
 

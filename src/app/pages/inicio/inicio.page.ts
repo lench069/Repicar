@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage-angular';
 //IMPORTAMOS NUESTRO SERVICIO
 import { AdmobService } from 'src/app/services/admob.service';
 import { LoadingController } from '@ionic/angular';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @Component({
   selector: 'app-inicio',
@@ -16,12 +17,23 @@ export class InicioPage implements OnInit {
   public total_pedidos_aceptados: number = 0;
   public id:number=0;
   constructor(public servicio:ServiciosService,
-    private storage: Storage,private admobService: AdmobService,public loading: LoadingController) { 
+    private storage: Storage,
+    private admobService: AdmobService,
+    public loading: LoadingController,
+    public apermisos: AndroidPermissions
+    ) { 
      
   }
 
   ngOnInit() {
-    this.admobService.MostrarBanner();
+    this.apermisos.requestPermissions([
+      this.apermisos.PERMISSION.CAMERA,
+      this.apermisos.PERMISSION.BIND_NOTIFICATION_LISTENER_SERVICE,
+      this.apermisos.PERMISSION.ACCESS_NOTIFICATION_POLICY,
+    ]).then((data: any) => {
+
+    });
+
   }
 
   async ionViewWillEnter() //se ejecuta a penas se abra la vista
@@ -30,6 +42,10 @@ export class InicioPage implements OnInit {
     let usuario = await this.storage.get('session_storage');
     this.id = usuario.ID_CLIENTE;
     console.log(usuario);
+    //PUSH
+    this.servicio.Inicializar_Notificacion(usuario);
+    //Publicidad
+    this.admobService.MostrarBanner();
     this.total_Pedidos();
   }
 
