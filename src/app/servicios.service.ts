@@ -341,6 +341,26 @@ export class ServiciosService {
       });
   }
 
+  //**********************FACTURAS
+
+  datosFac(id:any)
+    {
+      console.log(id);
+      return this.http.get(
+        this.URL_API + 'consultar-datosFac/'+id , 
+        );
+    }
+
+    //**********************ENVIO
+
+    datosEnvio(id:any)
+  {
+    console.log(id);
+    return this.http.get(
+      this.URL_API + 'consultar-datosEnv/'+id , 
+      );
+  }
+
 }
 
 
