@@ -46,6 +46,7 @@ export class NewpedidoPage implements OnInit {
   public choriginal:boolean=false;
   public imagen:string [] = [];
   public id_cliente:number = 0;
+  public datosFactura:any;
  
 
   constructor(public servicio:ServiciosService,
@@ -355,6 +356,63 @@ export class NewpedidoPage implements OnInit {
     },(error:any)=>{
         this.servicio.Mensajes('No se pudo realizar la peticion.','danger');
     });
+  }
+
+  async consultasDatosFac ()
+  {
+    //Se niega por que el event de true false esta al reves
+    if(!this.chfac)
+    {
+          let l = await this.loading.create(); //se crea el loading
+          l.present(); //se muestra el loading
+          this.servicio.datosFac(this.id_cliente) // llamado al servicio
+          .subscribe((data:any)=>{   //promesa espera hasta que regrese la data aqui va cuando fue exitoso
+            console.log(data);
+            if(data.mensaje != 'No tiene datos de factura')
+            {
+              this.nombres_fac = data.item.NOMBRES;
+              this.ci_fac = data.item.CI;
+              this.telefono_fac = data.item.TELEFONO;
+              this.direccion_fac = data.item.DIRECCION;
+              this.email_fac = data.item.EMAIL;
+            }else {
+              console.log('Aun no tienes datos de factura.');
+            }
+            l.dismiss();//quita el loading una vez cargue todo
+          },(error:any)=>{ //sentencias cuando ocurrio un error
+            this.servicio.Mensajes('Compruebe su conexion a internet.','danger');
+              l.dismiss();//quita el loading una vez cargue todo
+          })
+       
+    }
+  }
+
+  async consultasDatosEnvio ()
+  {
+    //Se niega por que el event de true false esta al reves
+    if(!this.chservi)
+    {
+          let l = await this.loading.create(); //se crea el loading
+          l.present(); //se muestra el loading
+          this.servicio.datosEnvio(this.id_cliente) // llamado al servicio
+          .subscribe((data:any)=>{   //promesa espera hasta que regrese la data aqui va cuando fue exitoso
+            console.log(data);
+            if(data.mensaje != 'No tiene datos de envio')
+            {
+              this.cprincipal = data.item.CALL_PRINCIPAL;
+              this.csecundaria = data.item.CALL_SECUNDARIA;
+              this.telefono_env = data.item.TELEFONO;
+              this.referencia = data.item.REFERENCIA;
+            }else {
+              console.log('Aun no tienes datos de envio.');
+            }
+            l.dismiss();//quita el loading una vez cargue todo
+          },(error:any)=>{ //sentencias cuando ocurrio un error
+            this.servicio.Mensajes('Compruebe su conexion a internet.','danger');
+              l.dismiss();//quita el loading una vez cargue todo
+          })
+       
+    }
   }
 
  

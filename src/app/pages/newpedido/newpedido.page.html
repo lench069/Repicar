@@ -111,7 +111,7 @@
     <ion-grid>
       <ion-row>
         <ion-col offset="1">
-          <ion-checkbox [(ngModel)]="chfac" ></ion-checkbox> 
+          <ion-checkbox [(ngModel)]="chfac" (click)="consultasDatosFac()"></ion-checkbox> 
           <ion-label>Factura</ion-label>
         </ion-col>
       </ion-row>
@@ -150,7 +150,7 @@
       </ion-card>
       <ion-row>
         <ion-col offset="1">
-          <ion-checkbox [(ngModel)]="chservi" ></ion-checkbox> 
+          <ion-checkbox [(ngModel)]="chservi" (click)="consultasDatosEnvio()"></ion-checkbox> 
           <ion-label>Servicio de envio</ion-label>
         </ion-col>
       </ion-row>
