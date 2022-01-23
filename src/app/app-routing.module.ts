@@ -59,9 +59,13 @@ const routes: Routes = [
   {
     path: 'datosproveedor/:cod_proveedor',
     loadChildren: () => import('./pages/datosproveedor/datosproveedor.module').then( m => m.DatosproveedorPageModule)
+  },
+  {
+    path: 'historial-noti',
+    loadChildren: () => import('./pages/historial-noti/historial-noti.module').then( m => m.HistorialNotiPageModule)
   }
 
-
+  
 ];
 
 @NgModule({

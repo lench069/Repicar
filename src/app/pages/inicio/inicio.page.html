@@ -5,8 +5,9 @@
     </ion-buttons>
     <ion-title>Principal</ion-title>
     <ion-buttons slot="end" >
-      <ion-button (click)="servicio.irA('/pedido/0')">
-        <ion-icon name="chatbox" style="font-size: 30px;" color="light"></ion-icon>
+      <ion-button (click)="servicio.irA('/historial-noti')">
+        <ion-icon name="chatbox" style="font-size: 35px;" color="light"></ion-icon>
+        <ion-badge color="danger" style="position: fixed;">{{num_noti}}</ion-badge>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

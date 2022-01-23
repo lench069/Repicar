@@ -301,14 +301,7 @@ export class ServiciosService {
             }
           });
 
-          pushObject.on('notification').subscribe(async (notification: any) => {
-            console.log(notification.message);
-            console.log(notification.title);
-            console.log(notification.count);
-            console.log(notification.sound);
-            console.log(notification.image);
-            console.log(notification.additionalData);
-            console.log(notification.vibrate);
+          pushObject.on('notification').subscribe(async (notification: any) => {        
             let alert = await this.toast.create({
               header: notification.title,
               message: notification.message,
@@ -320,6 +313,12 @@ export class ServiciosService {
             });
             alert.present();
             console.log('Notificación: ', notification);
+            this.Mensaje_Guardar(usuario.ID_CLIENTE,notification).subscribe((data:any)=>{
+              console.log('mensaje guardado en tabla notificaciones');
+            },(error:any)=>{
+                this.Mensajes('No se pudo realizar la peticion.','danger');
+            });
+
           });
 
           pushObject.on('registration').subscribe((registration: any) => {
@@ -360,6 +359,42 @@ export class ServiciosService {
       this.URL_API + 'consultar-datosEnv/'+id , 
       );
   }
+
+  //*********Historial de mensaje************
+  Mensaje_Guardar(id_cliente:number,notification:any) {
+    console.log('guardar noti')
+    return this.http.post(
+      this.URL_API + 'registrar-mensaje', 
+      this.objectToFormData({
+        titulo: notification.title,
+        mensaje: notification.message,
+        id_cliente: id_cliente,
+        estado: '0',
+        cod_pedido: notification.additionalData.cod_pedido
+      }) 
+      );
+  };
+  num_noti(id_cliente:number)
+  {
+    return this.http.get(
+      this.URL_API + 'num-noti/'+id_cliente , 
+      );
+  };
+  Cargar_notificaciones(data:any) {
+    return this.http.post(
+      this.URL_API + 'listar-notificaciones-historial', 
+      this.objectToFormData({id_cliente: data.id_cliente})
+      );
+  };
+  marcarVistaNoti(data:any) {
+    return this.http.post(
+      this.URL_API + 'actualizar-noti/'+data.id_noti, 
+      this.objectToFormData({
+        estado: data.estado,
+      }) 
+      );
+  };
+
 
 }
 

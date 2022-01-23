@@ -16,6 +16,7 @@ export class InicioPage implements OnInit {
   public total_pedidos: number = 0;
   public total_pedidos_aceptados: number = 0;
   public id:number=0;
+  public num_noti:number=0;
   constructor(public servicio:ServiciosService,
     private storage: Storage,
     private admobService: AdmobService,
@@ -47,7 +48,22 @@ export class InicioPage implements OnInit {
     //Publicidad
     this.admobService.MostrarBanner();
     this.total_Pedidos();
+    //Consultar historial notificaciones
+    this.num_notificaciones();
   }
+
+   num_notificaciones() {
+   this.servicio.num_noti(this.id) // llamado al servicio
+   .subscribe((data:any)=>{   //promesa espera hasta que regrese la data aqui va cuando fue exitoso
+    console.log(data);
+    if(data.length > 0)
+    {
+      this.num_noti= data.length;
+    }
+   },(error:any)=>{
+      this.servicio.Mensajes('No se pudo realizar la peticion.','danger');
+  });
+ }
 
   async total_Pedidos() {
     let l = await this.loading.create(); //se crea el loading

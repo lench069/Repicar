@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='inicio' text=''>atras</ion-back-button>
+    </ion-buttons>
+    <ion-title>Historial notificaciones</ion-title>  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item-group *ngFor="let item of notificaciones">
+      <ion-item-divider color="medium">
+        <ion-label>{{item.fecha}}</ion-label>
+      </ion-item-divider>
+      <ion-list>
+        <ion-item-sliding  *ngFor="let noti of item.items" #ionItemSliding> <!--Da un identificador a la etiqueta.-->
+          <ion-item>
+            <!--Text wrap permite a textos largos se escriban en las sigueintes lineas-->
+            <ion-label text-wrap>
+              <p><strong>Titulo:</strong> {{noti.TITULO}}</p>
+              <p><b>Notificacion:</b> {{noti.DESCRIPCION}}</p>
+              <p><b>Hora:</b>{{noti.FECHA | date:'shortTime'}} </p>
+            </ion-label>
+            <ion-badge color="success" side="end" *ngIf="noti.ESTADO == '1'"></ion-badge>
+            <ion-badge color="success" side="end" *ngIf="noti.ESTADO == '0'">NEW</ion-badge>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option color="warning" (click)="Detalles_Pedido(noti,ionItemSliding)">Ver</ion-item-option>
+            <!--<ion-item-option color="danger" (click)="Borrar(pedi,ionItemSliding)">Eliminar</ion-item-option>-->
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </ion-item-group>
+
+</ion-content>
