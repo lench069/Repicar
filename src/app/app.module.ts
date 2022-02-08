@@ -25,6 +25,8 @@ import { AdmobService } from './services/admob.service';
 import { Push } from '@ionic-native/push/ngx';
 //PErmisos
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+//formularios
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
   imports: [
     HttpClientModule,
     BrowserModule, 
+    FormsModule,
+    ReactiveFormsModule,
     IonicStorageModule.forRoot(), 
     IonicModule.forRoot(), 
     AppRoutingModule,

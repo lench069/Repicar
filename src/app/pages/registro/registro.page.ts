@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from 'src/app/servicios.service';
+import { FormGroup, FormBuilder, Validators, FormArray} from '@angular/forms';
 import { Camera } from '@ionic-native/camera/ngx'; //para la camara
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registro',
@@ -16,45 +18,82 @@ export class RegistroPage implements OnInit {
   public estado: string = 'Activo';
   public contrasenia: string = '';
   public imagen: any = '../../../assets/imagenes/avatar.jpg';
+  forma: FormGroup;
 
   constructor(public servicio:ServiciosService,
+    private fb: FormBuilder,
+    public loading: LoadingController,
     private camera:Camera //para usar la camara.
     ) { }
 
   ngOnInit() {
+    this.crearFormulario();
+  }
+  get nombresNoValido() {
+    return this.forma.get('nombres').invalid && this.forma.get('nombres').touched
+  }
+  get apellidosNoValido() {
+    return this.forma.get('apellidos').invalid && this.forma.get('apellidos').touched
+  }
+  get celularNoValido() {
+    return this.forma.get('celular').invalid && this.forma.get('celular').touched
+  }
+  get correoNoValido() {
+    return this.forma.get('correo').invalid && this.forma.get('correo').touched
+  }
+  get contraseniaNoValido() {
+    return this.forma.get('contrasenia').invalid && this.forma.get('contrasenia').touched
   }
 
-  Guardar (){
-    if(this.nombres == '')
-    {
-      this.servicio.Mensajes('Debe ingresar sus nombres.', 'dark');
-    }else if(this.apellidos == '')
-    {
-      this.servicio.Mensajes('Debe ingresar sus apellidos.', 'dark');
-    }else if(this.celular == '')
-    {
-      this.servicio.Mensajes('Debe ingresar un numero de celular.', 'dark');
-    }else if(this.email == '') 
-    {
-      this.servicio.Mensajes('Debe ingresar un email.', 'dark');
-    }else if(this.contrasenia == '')
-    {
-      this.servicio.Mensajes('Debe ingresar una contraseña.', 'dark');
+  crearFormulario() {
+
+    this.forma = this.fb.group({
+      nombres  : ['', [ Validators.required, Validators.minLength(3) ]  ],
+      apellidos  : ['', [ Validators.required, Validators.minLength(3) ]  ],
+      celular: ['', [Validators.required, Validators.minLength(10),Validators.pattern('[-+]?([0-9]*\.[0-9]+|[0-9]+)') ] ],  
+      correo  : ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')] ],
+      contrasenia: ['', [Validators.required, Validators.minLength(4) ] ]
+    
+    });
+
+  }
+
+  async Guardar (){
+    console.log( this.forma );
+
+    if ( this.forma.invalid ) {
+      console.log('invalido');
+      return Object.values( this.forma.controls ).forEach( control => {
+        
+        if ( control instanceof FormGroup ) {
+          Object.values( control.controls ).forEach( control => control.markAsTouched() );
+        } else {
+          control.markAsTouched();
+        }
+        
+        
+      });
+     
     }else{
+      let l = await this.loading.create(); 
+      l.present();
       this.servicio.Cliente_Guardar({
-        nombres:this.nombres,
-        apellidos:this.apellidos,
-        celular:this.celular,
-        email:this.email,
-        contrasenia:this.contrasenia,
+        nombres:this.forma.value.nombres,
+        apellidos:this.forma.value.apellidos,
+        celular:this.forma.value.celular,
+        email:this.forma.value.correo,
+        contrasenia:this.forma.value.contrasenia,
         estado:this.estado,
-        imagen: this.imagen
+        imagen: this.imagen,
+        token: '',
       }).subscribe((data:any)=>{
         console.log();
         this.servicio.Mensajes(data.mensaje,data.info.id_cliente == 0 ? 'danger' : 'success');
+        l.dismiss();
         this.servicio.irA('/login');
       },(error:any)=>{
           this.servicio.Mensajes('No se pudo realizar la peticion.','danger');
+          l.dismiss();
       });
 
     } 

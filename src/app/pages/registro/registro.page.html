@@ -20,32 +20,52 @@
       </ion-button>
     </div>
 
-    <ion-card-content>
-      <ion-list>
+    <ion-card-content>  
+      <form [formGroup]="forma" (ngSubmit)="Guardar()">
         <ion-item>
           <ion-label position="floating">Nombres:</ion-label>
-          <ion-input [(ngModel)]="nombres"></ion-input>
+          <ion-input formControlName="nombres" [class.is-invalid]="nombresNoValido"></ion-input>
         </ion-item>
+        <small *ngIf="nombresNoValido" class="error ion-padding"  style="color: red;">
+          Minimo 3 caracteres.
+        </small>
         <ion-item>
           <ion-label position="floating">Apellidos:</ion-label>
-          <ion-input [(ngModel)]="apellidos" ></ion-input>
+          <ion-input formControlName="apellidos" [class.is-invalid]="apellidosNoValido" ></ion-input>
         </ion-item>
+        <small *ngIf="apellidosNoValido" class="error ion-padding"  style="color: red;">
+          Minimo 3 caracteres.
+        </small>
         <ion-item>
           <ion-label position="floating">Email:</ion-label>
-          <ion-input [(ngModel)]="email" ></ion-input>
+          <ion-input formControlName="correo" [class.is-invalid]="correoNoValido"></ion-input>
         </ion-item>
+        <small *ngIf="correoNoValido" class="error ion-padding"  style="color: red;">
+          Email invalido.
+        </small>
         <ion-item>
           <ion-label position="floating">Celular:</ion-label>
-          <ion-input [(ngModel)]="celular" ></ion-input>
+          <ion-input  formControlName="celular" [class.is-invalid]="celularNoValido"></ion-input>
         </ion-item>
+        <small *ngIf="celularNoValido" class="error ion-padding"  style="color: red;">
+          Numero de celular invalido.
+        </small>
         <ion-item>
           <ion-label position="floating">Contraseña:</ion-label>
-          <ion-input [(ngModel)]="contrasenia" ></ion-input>
+          <ion-input  formControlName="contrasenia" [class.is-invalid]="contraseniaNoValido"></ion-input>
         </ion-item>
-      </ion-list>
+        <small *ngIf="contraseniaNoValido" class="error ion-padding"  style="color: red;">
+          Minimo 4 caracteres.
+        </small>
+        <br>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" expand="block" color="warning" class="ion-margin-start ion-margin-end ion-margin-bottom">REGISTRAR</ion-button>
+          </ion-col>
+        </ion-row>
+     </form>
     </ion-card-content>
   </ion-card>
-  <ion-button expand="block" color="warning" (click)="Guardar()" class="ion-margin-start ion-margin-end ion-margin-bottom">REGISTRAR</ion-button>
-</ion-content>
+  </ion-content>
  
  
