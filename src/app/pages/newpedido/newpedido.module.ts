@@ -8,11 +8,14 @@ import { NewpedidoPageRoutingModule } from './newpedido-routing.module';
 
 import { NewpedidoPage } from './newpedido.page';
 
+import { CustomFormsModule } from 'ng2-validation';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    CustomFormsModule,
     NewpedidoPageRoutingModule
   ],
   declarations: [NewpedidoPage]

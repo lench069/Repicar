@@ -122,24 +122,39 @@
                   <ion-list>
                     <ion-item>
                       <ion-label position="fixed">Nombres:</ion-label>
-                      <ion-input [(ngModel)]="nombres_fac"></ion-input>
+                      <ion-input type="text" [(ngModel)]="nombres_fac" name="nombre_factu" #nombre_factu="ngModel" pattern="[a-zA-Z ]*" required></ion-input>
                     </ion-item>
+                    <div class="form-error" *ngIf="nombres_fac && (nombre_factu.dirty || nombre_factu.touched)">
+                      <small *ngIf="nombre_factu.errors?.pattern" class="error ion-padding"  style="color: red;">Nombre incorrecto</small>
+                      <small *ngIf="nombre_factu.errors?.required" class="error ion-padding"  style="color: red;">Ingrese un nombre</small>
+                    </div>
                     <ion-item>
                       <ion-label position="fixed">Cedula:</ion-label>
-                      <ion-input [(ngModel)]="ci_fac" ></ion-input>
+                      <ion-input type="text" [(ngModel)]="ci_fac" name="cedula_factu" #cedula_factu="ngModel" number minlength='10' maxlength='13'></ion-input>
                     </ion-item>
+                    <div class="form-error" *ngIf="ci_fac && (cedula_factu.dirty || cedula_factu.touched)">
+                      <small *ngIf="cedula_factu.errors?.number" class="error ion-padding"  style="color: red;">Cedula o Ruc erroneo</small>
+                      <small *ngIf="cedula_factu.errors?.minlength" class="error ion-padding"  style="color: red;">No cumple el minimo de digitos</small>
+                    </div>
                     <ion-item>
                       <ion-label position="fixed">Telefono:</ion-label>
-                      <ion-input [(ngModel)]="telefono_fac" ></ion-input>
+                      <ion-input [(ngModel)]="telefono_fac" name="telefono_factu" #telefono_factu="ngModel" number minlength='10' maxlength='12'></ion-input>
                     </ion-item>
+                    <div class="form-error" *ngIf="telefono_fac && (telefono_factu.dirty || telefono_factu.touched)">
+                      <small *ngIf="telefono_factu.errors?.number" class="error ion-padding"  style="color: red;">Telefono o celular erroneo</small>
+                      <small *ngIf="telefono_factu.errors?.minlength" class="error ion-padding"  style="color: red;">No cumple el minimo de digitos</small>
+                    </div>
                     <ion-item>
                       <ion-label position="fixed">Direccion:</ion-label>
                       <ion-input [(ngModel)]="direccion_fac" ></ion-input>
                     </ion-item>
                     <ion-item>
                       <ion-label position="fixed">Email:</ion-label>
-                      <ion-input [(ngModel)]="email_fac" ></ion-input>
+                      <ion-input [(ngModel)]="email_fac" name="correo" #correo="ngModel" required email></ion-input>
                     </ion-item>
+                    <div class="form-error" *ngIf="email_fac && (correo.dirty || correo.touched)">
+                    <small class="error ion-padding" *ngIf="correo.errors" style="color: red;">Ingrese un correo valido</small>
+                    </div>
                   </ion-list>
             </ion-col>
             <ion-col>
@@ -169,8 +184,12 @@
                     </ion-item>
                     <ion-item>
                       <ion-label position="fixed">Telefono:</ion-label>
-                      <ion-input [(ngModel)]="telefono_env" ></ion-input>
+                      <ion-input type="text" [(ngModel)]="telefono_env" name="telefono_envio" #telefono_envio="ngModel" number minlength='10' maxlength='12' required></ion-input>
                     </ion-item>
+                    <div class="form-error" *ngIf="telefono_env && (telefono_envio.dirty || telefono_envio.touched)">
+                      <small *ngIf="telefono_envio.errors?.number" class="error ion-padding"  style="color: red;">Telefono o celular erroneo</small>
+                      <small *ngIf="telefono_envio.errors?.minlength" class="error ion-padding"  style="color: red;">No cumple el minimo de digitos</small>
+                    </div>
                     <ion-item>
                       <ion-label position="fixed">referencia:</ion-label>
                       <ion-input [(ngModel)]="referencia" ></ion-input>

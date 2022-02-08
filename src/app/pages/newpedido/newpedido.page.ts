@@ -47,6 +47,7 @@ export class NewpedidoPage implements OnInit {
   public imagen:string [] = [];
   public id_cliente:number = 0;
   public datosFactura:any;
+  public miModelo: any;
  
 
   constructor(public servicio:ServiciosService,
@@ -55,7 +56,7 @@ export class NewpedidoPage implements OnInit {
     public loading: LoadingController,
     private admobService:AdmobService
     ) { 
-    
+      this.miModelo = {};
   }
 
   ngOnInit() {

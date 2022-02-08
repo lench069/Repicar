@@ -27,6 +27,7 @@ import { Push } from '@ionic-native/push/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 //formularios
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { CustomFormsModule } from 'ng2-validation';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     BrowserModule, 
     FormsModule,
     ReactiveFormsModule,
+    CustomFormsModule,
     IonicStorageModule.forRoot(), 
     IonicModule.forRoot(), 
     AppRoutingModule,
