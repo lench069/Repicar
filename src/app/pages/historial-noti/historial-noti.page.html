@@ -14,7 +14,7 @@
       </ion-item-divider>
       <ion-list>
         <ion-item-sliding  *ngFor="let noti of item.items" #ionItemSliding> <!--Da un identificador a la etiqueta.-->
-          <ion-item>
+          <ion-item (click)="Detalles_Pedido(noti,ionItemSliding)">
             <!--Text wrap permite a textos largos se escriban en las sigueintes lineas-->
             <ion-label text-wrap>
               <p><strong>Titulo:</strong> {{noti.TITULO}}</p>
@@ -25,8 +25,8 @@
             <ion-badge color="success" side="end" *ngIf="noti.ESTADO == '0'">NEW</ion-badge>
           </ion-item>
           <ion-item-options side="end">
-            <ion-item-option color="warning" (click)="Detalles_Pedido(noti,ionItemSliding)">Ver</ion-item-option>
-            <!--<ion-item-option color="danger" (click)="Borrar(pedi,ionItemSliding)">Eliminar</ion-item-option>-->
+            <!--<ion-item-option color="warning" (click)="Detalles_Pedido(noti,ionItemSliding)">Ver</ion-item-option>
+            <ion-item-option color="danger" (click)="Borrar(pedi,ionItemSliding)">Eliminar</ion-item-option>-->
           </ion-item-options>
         </ion-item-sliding>
       </ion-list>
