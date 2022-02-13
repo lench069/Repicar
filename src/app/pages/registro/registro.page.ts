@@ -3,6 +3,8 @@ import { ServiciosService } from 'src/app/servicios.service';
 import { FormGroup, FormBuilder, Validators, FormArray} from '@angular/forms';
 import { Camera } from '@ionic-native/camera/ngx'; //para la camara
 import { LoadingController } from '@ionic/angular';
+//device
+import { Device } from '@awesome-cordova-plugins/device/ngx';
 
 @Component({
   selector: 'app-registro',
@@ -23,8 +25,9 @@ export class RegistroPage implements OnInit {
   constructor(public servicio:ServiciosService,
     private fb: FormBuilder,
     public loading: LoadingController,
-    private camera:Camera //para usar la camara.
-    ) { }
+    private camera:Camera, //para usar la camara.
+    private device: Device
+    ) { console.log('Device UUID is: ' + this.device.uuid);}
 
   ngOnInit() {
     this.crearFormulario();
@@ -86,6 +89,8 @@ export class RegistroPage implements OnInit {
         estado:this.estado,
         imagen: this.imagen,
         token: '',
+        uidd: this.device.uuid,
+        login: '0' //true
       }).subscribe((data:any)=>{
         console.log();
         this.servicio.Mensajes(data.mensaje,data.info.id_cliente == 0 ? 'danger' : 'success');

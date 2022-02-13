@@ -74,7 +74,9 @@ export class ServiciosService {
         celular: data.celular,
         contrasenia: data.contrasenia,
         estado: data.estado,
-        foto: data.imagen
+        foto: data.imagen,
+        uidd:data.uidd,
+        login:data.login
       }) 
       );
   };
@@ -102,6 +104,17 @@ export class ServiciosService {
       this.URL_API + 'actualizar-token/'+id_cliente, 
       this.objectToFormData({
         token: token
+      }) 
+      );
+  };
+
+  Cliente_Actualizar_Login(id_cliente:any,login:any) {
+    console.log("resivo");
+    console.log(id_cliente,login);
+    return this.http.post(
+      this.URL_API + 'actualizar-login/'+id_cliente, 
+      this.objectToFormData({
+        login: login
       }) 
       );
   };

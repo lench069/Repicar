@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from 'src/app/servicios.service';
 import { Storage } from '@ionic/storage-angular';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +13,8 @@ export class MenuComponent implements OnInit {
   public cliente: object = {};
  
   constructor(private servicio: ServiciosService,
-    private storage: Storage) {
+    private storage: Storage,
+    public loading: LoadingController) {
 
   }
 
@@ -48,7 +50,19 @@ export class MenuComponent implements OnInit {
 
   async logout() {
     await this.storage.clear();
-    this.servicio.irA('/login')
+    let l = await this.loading.create(); //se crea el loading
+    l.present(); //se muestra el loading
+    this.servicio.Cliente_Actualizar_Login(
+            this.id,
+            '1'//FALSE
+          ).subscribe((data:any)=>{
+             console.log(data);
+             l.dismiss();
+             this.servicio.irA('/login')
+          },(error:any)=>{
+              this.servicio.Mensajes('No se pudo realizar la peticion, compruebe su conexion a internet.','danger');
+              l.dismiss();//quita el loading una vez cargue todo
+          });
   }
 
 

@@ -28,6 +28,9 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 //formularios
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CustomFormsModule } from 'ng2-validation';
+//
+import { Device } from '@awesome-cordova-plugins/device/ngx';
+
 
 
 @NgModule({
@@ -48,6 +51,7 @@ import { CustomFormsModule } from 'ng2-validation';
     Camera,
     Push,
     AndroidPermissions,
+    Device,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     //AÑADIMOS ADMOB COMO PROVIDER
     AdMobFree,

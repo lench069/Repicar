@@ -47,6 +47,18 @@ export class LoginPage implements OnInit {
       }).subscribe((data:any)=>{
         console.log(data);
         if(data.mensaje == 'true'){
+
+          this.servicio.Cliente_Actualizar_Login(
+            data.info.item.ID_CLIENTE,
+            '0'
+          ).subscribe((data:any)=>{
+             console.log(data);
+          },(error:any)=>{
+              this.servicio.Mensajes('No se pudo realizar la peticion, compruebe su conexion a internet.','danger');
+              l.dismiss();//quita el loading una vez cargue todo
+          });
+
+
           this.storage.set('session_storage', data.info.item);
           l.dismiss();//quita el loading una vez cargue todo
           this.router.navigate(['/inicio']);
