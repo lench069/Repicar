@@ -433,7 +433,7 @@ export class NewpedidoPage implements OnInit {
       this.servicio.Mensajes('Se puede cargar maximo 3 imagenes','warning');
     }else
     {
-      this.camera.getPicture({quality: 60,
+      this.camera.getPicture({quality: 80,
         allowEdit:true, //permite editar la imgen 
         targetHeight:800, //ancho
         targetWidth:800, //alto

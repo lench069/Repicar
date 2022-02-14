@@ -59,6 +59,8 @@ export class InicioPage implements OnInit {
     if(data.length > 0)
     {
       this.num_noti= data.length;
+    }else{
+      this.num_noti = 0;
     }
    },(error:any)=>{
       this.servicio.Mensajes('No se pudo realizar la peticion.','danger');
