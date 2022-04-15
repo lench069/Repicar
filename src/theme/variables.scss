@@ -75,8 +75,8 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
-
-@media (prefers-color-scheme: dark) {
+//SE cambia de nombre a darkModificado para que no sea tomado predeterminadamente al crear la app.
+@media (prefers-color-scheme: darkModificado) {
   /*
    * Dark Colors
    * -------------------------------------------
@@ -196,7 +196,7 @@
    * -------------------------------------------
    */
 
- /* .md body {
+  .md body {
     --ion-background-color: #121212;
     --ion-background-color-rgb: 18,18,18;
 
@@ -232,5 +232,5 @@
     --ion-tab-bar-background: #1f1f1f;
 
     --ion-card-background: #1e1e1e;
-  }*/
+  }
 }
