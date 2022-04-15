@@ -434,9 +434,10 @@ export class NewpedidoPage implements OnInit {
     }else
     {
       this.camera.getPicture({quality: 80,
-        allowEdit:true, //permite editar la imgen 
+        //allowEdit:true,
+        correctOrientation:true,
         targetHeight:800, //ancho
-        targetWidth:800, //alto
+        targetWidth:900, //alto
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE
