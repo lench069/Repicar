@@ -29,6 +29,10 @@ ion-content{
     --background: var(--ion-color-fondo);
   }
 
+ion-toolbar{
+  --background: var(--ion-color-fondo);
+}
+
 .vertical-align-content
 {
     margin: 0 !important;
@@ -40,4 +44,8 @@ ion-content{
 
 ion-button{
   font-size: 18px;
+}
+
+ion-icon{
+  margin-right: 15px
 }

@@ -1,49 +1,51 @@
 
   <ion-menu side="start" menuId="first" contentId="main-content" (ionWillOpen)="inicializar()">
     <ion-header>
-      <ion-toolbar color="dark">
-        
-        <ion-card color="dark">
+      <ion-toolbar >  
+        <br>
+        <div class="ion-text-center">
+          <img class="logo" src="./assets/imagenes/repicar_slogan.png">
+        </div>
+        <ion-card color="fondo">
          <div class="img-wrapper">
             <img src="{{cliente.FOTO}}">
          </div>
          <ion-card-content>
-           <h3>{{cliente.NOMBRES}} {{cliente.APELLIDOS}}</h3>
+           <br>
+           <h3 class="text-name"><strong>{{cliente.NOMBRES}} {{cliente.APELLIDOS}}</strong></h3>
            <ion-text color="medium">
-             <div style="display: flex;">
-               <p> {{cliente.EMAIL}}</p>
+             <div>
+               <p class="text-subname"> {{cliente.EMAIL}}</p>
              </div>
-             <div style="display: flex;" class="ion-justify-content-center">
-              <p>Version. 1.0</p>
+             <div  class="ion-justify-content-center">
+              <p style="color:thistle;text-align: center; font-size: 10px;">Version 1.0</p>
             </div>
            </ion-text>
          </ion-card-content>
         </ion-card>
       </ion-toolbar>
-      <ion-item-divider color="warning"> 
-      </ion-item-divider>
     </ion-header>
-
-    <ion-content>
+    <hr >
+    <ion-content class="ion-content">
       <ion-list>
         <ion-menu-toggle>
         <ion-item (click)="servicio.irA('/cuenta')">
-          <ion-icon slot="start" name="person-outline"></ion-icon>
-          <ion-label>Mi cuenta</ion-label>
+          <ion-icon size="large" name="person-outline"></ion-icon>
+          <ion-label><strong>Cuenta</strong> </ion-label>
         </ion-item>
         <ion-item (click)="servicio.irA('/historial')">
-          <ion-icon slot="start" name="time-outline"></ion-icon>
-          <ion-label>Historial</ion-label>
+          <ion-icon size="large" slot="start" name="time-outline"></ion-icon>
+          <ion-label><strong>Historial</strong> </ion-label>
         </ion-item>
         <ion-item (click)="servicio.irA('/acerca')">
-          <ion-icon slot="start" name="help-circle-outline"></ion-icon>
-          <ion-label>Acerca de la aplicación</ion-label>
+          <ion-icon size="large" slot="start" name="help-circle-outline"></ion-icon>
+          <ion-label><strong>Acerca de la aplicación</strong> </ion-label>
         </ion-item>
         <ion-item-divider > 
         </ion-item-divider>
         <ion-item (click)="logout()">
-          <ion-icon slot="start" name="close-circle-outline"></ion-icon>
-          <ion-label>Salir</ion-label>
+          <ion-icon size="large" name="close-circle-outline"></ion-icon>
+          <ion-label><strong>Salir</strong></ion-label>
         </ion-item>
       </ion-menu-toggle>
       </ion-list>

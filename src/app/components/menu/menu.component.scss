@@ -11,13 +11,38 @@ ion-toolbar{
   
     .img-wrapper {
       position: absolute;
-      left: 20%;
-      top: 0px;
-      transform: translateX(-50%);
+      left: 30%;
+      top: -22px;
       img {
-        border-radius: 10px;
-        width: 80px;
-        height: 80px;
+        border-radius: 100px;
+        width: 130px;
+        height: 130px;
+        border-color: #ffc409;
+      border-width: 3px;
+      border-style: solid;
       }
     }
+  }
+  .logo{
+    width: 85%;
+  }
+  .text-name{
+    color:white;text-align: center; font-size: 15px;
+  }
+  .text-subname{
+    color:thistle;text-align: center; font-size: 12px;
+  }
+  hr{
+    height: 10px !important;
+    width: 500px !important;
+    background: #ffc409 !important;
+    display: block !important;
+    font-size: 2em !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin:0px;
+  }
+
+  ion-content{
+    --background: white;
   }
