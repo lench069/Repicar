@@ -1,38 +1,36 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>Autenticacion</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-  <ion-content [fullscreen]="true">
+  <ion-content [fullscreen]="true" color="fondo">
 	<ion-grid>
 	  <ion-row>
 		<ion-col class="ion-text-center" size-md="6" size-lg="5" size-xs="12">
 			<div class="logo">
-			  <img src="./assets/imagenes/logo_tipo.JPG">
+			  <img src="./assets/imagenes/repicar_slogan.png">
 			</div>
-			<p class="ion-text-center">Repicar</p>
-  
-			<ion-card color="light" class="auth-card ion-margin">
-			  <ion-item  >
-				<ion-label position="floating">Email</ion-label>
-				<ion-input type="email" [(ngModel)]="username" placeholder="Email"></ion-input>
-			  </ion-item>
-			  <ion-item>
-				<ion-label position="floating">Contraseña</ion-label>
-				<ion-input type="password" [(ngModel)]="password"></ion-input>
-			  </ion-item>
+			<ion-card>
+				<br>
+				<ion-card  class="auth-card ion-margin">
+					<ion-item>
+					  <ion-label position="floating">Email</ion-label>
+					  <ion-input type="email" [(ngModel)]="username" ></ion-input>
+					</ion-item>
+					<br>
+					<ion-item>
+					  <ion-label position="floating">Contraseña</ion-label>
+					  <ion-input type="password" [(ngModel)]="password"></ion-input>
+					</ion-item>
+				  </ion-card>
+				  <br>
+				  <ion-button expand="block" color="warning" (click)="prosesLogin()" class="ion-margin-start ion-margin-end ion-margin-bottom" >
+					<b>Iniciar Sesión</b> 
+				  </ion-button>
+				  <span class="ion-margin"></span>
+				  <ion-text>o</ion-text>
+				  <span class="ion-margin"></span>
+				  <ion-button expand="block" color="warning" class="ion-margin" (click)="formRegister()">
+					<b>REGISTRATE</b>
+				  </ion-button>
+				  <br><br>
 			</ion-card>
-  
-			<ion-button expand="block" color="warning" (click)="prosesLogin()" class="ion-margin-start ion-margin-end ion-margin-bottom" >
-			  Ingresar
-			</ion-button>
-			<span class="ion-margin"></span>
-			<ion-text>o</ion-text>
-			<span class="ion-margin"></span>
-			<ion-button expand="block" color="warning" class="ion-margin" (click)="formRegister()">
-			  Registrar
-			</ion-button>
+			
 		</ion-col>
 	  </ion-row>
 	</ion-grid>

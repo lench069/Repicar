@@ -74,7 +74,27 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** fondo **/
+  --ion-color-fondo:  #1c334b ;
+  --ion-color-fondo-rgb: 244, 245, 248;
+  --ion-color-fondo-contrast: #000000;
+  --ion-color-fondo-contrast-rgb: 0, 0, 0;
+  --ion-color-fondo-shade: #154360;
+  --ion-color-fondo-tint: #154360;
+
+  --ion-font-family: 'Poppins';
+
 }
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-Regular.ttf');
+  font-weight: 200;
+  font-style: normal;
+}
+
+
 //SE cambia de nombre a darkModificado para que no sea tomado predeterminadamente al crear la app.
 @media (prefers-color-scheme: darkModificado) {
   /*
