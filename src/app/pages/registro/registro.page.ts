@@ -19,7 +19,7 @@ export class RegistroPage implements OnInit {
   public email: string = '';
   public estado: string = 'Activo';
   public contrasenia: string = '';
-  public imagen: any = '../../../assets/imagenes/avatar.jpg';
+  public imagen: any = '../../../assets/imagenes/user1.png';
   forma: FormGroup;
 
   constructor(public servicio:ServiciosService,

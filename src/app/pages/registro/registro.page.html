@@ -1,70 +1,68 @@
-<ion-header>
+<!--<ion-header>
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-back-button defaultHref='' text=''>atras</ion-back-button>
     </ion-buttons>
     <ion-title>Registro</ion-title>
   </ion-toolbar>
-</ion-header>
-<ion-content>
-<ion-card color="light">
-    <ion-card-header>
-     <!--<ion-card-subtitle>Card Subtitle</ion-card-subtitle>--> 
-      <!--<ion-card-title>Card Title</ion-card-title>--> 
-    </ion-card-header>
-    <div class="img-wrapper">
-      <img [src]="imagen">
-      <ion-button color="light" (click)="Capturar_foto()">
-        <ion-icon slot="icon-only" name="camera-outline" color="medium">
-        </ion-icon>
-      </ion-button>
-    </div>
-
-    <ion-card-content>  
-      <form [formGroup]="forma" (ngSubmit)="Guardar()">
-        <ion-item>
-          <ion-label position="floating">Nombres:</ion-label>
-          <ion-input formControlName="nombres" [class.is-invalid]="nombresNoValido"></ion-input>
-        </ion-item>
-        <small *ngIf="nombresNoValido" class="error ion-padding"  style="color: red;">
-          Minimo 3 caracteres.
-        </small>
-        <ion-item>
-          <ion-label position="floating">Apellidos:</ion-label>
-          <ion-input formControlName="apellidos" [class.is-invalid]="apellidosNoValido" ></ion-input>
-        </ion-item>
-        <small *ngIf="apellidosNoValido" class="error ion-padding"  style="color: red;">
-          Minimo 3 caracteres.
-        </small>
-        <ion-item>
-          <ion-label position="floating">Email:</ion-label>
-          <ion-input formControlName="correo" [class.is-invalid]="correoNoValido"></ion-input>
-        </ion-item>
-        <small *ngIf="correoNoValido" class="error ion-padding"  style="color: red;">
-          Email invalido.
-        </small>
-        <ion-item>
-          <ion-label position="floating">Celular:</ion-label>
-          <ion-input  formControlName="celular" [class.is-invalid]="celularNoValido"></ion-input>
-        </ion-item>
-        <small *ngIf="celularNoValido" class="error ion-padding"  style="color: red;">
-          Numero de celular invalido.
-        </small>
-        <ion-item>
-          <ion-label position="floating">Contraseña:</ion-label>
-          <ion-input  formControlName="contrasenia" [class.is-invalid]="contraseniaNoValido"></ion-input>
-        </ion-item>
-        <small *ngIf="contraseniaNoValido" class="error ion-padding"  style="color: red;">
-          Minimo 4 caracteres.
-        </small>
-        <br>
-        <ion-row>
-          <ion-col>
-            <ion-button type="submit" expand="block" color="warning" class="ion-margin-start ion-margin-end ion-margin-bottom">REGISTRAR</ion-button>
-          </ion-col>
-        </ion-row>
-     </form>
-    </ion-card-content>
+</ion-header>-->
+<ion-content [fullscreen]="true" class="vertical-align-content">
+<ion-card >
+    <ion-card class="ion-card">  
+      <div class="img-wrapper">
+        <img [src]="imagen">
+        <ion-button color="light" (click)="Capturar_foto()">
+          <ion-icon slot="icon-only" name="camera-outline" color="medium">
+          </ion-icon>
+        </ion-button>
+      </div>
+      <ion-card-content>
+        <form [formGroup]="forma" (ngSubmit)="Guardar()">
+          <ion-item>
+            <ion-label position="floating">Nombres</ion-label>
+            <ion-input formControlName="nombres" [class.is-invalid]="nombresNoValido"></ion-input>
+          </ion-item>
+          <small *ngIf="nombresNoValido" class="error ion-padding"  style="color: red;">
+            Minimo 3 caracteres.
+          </small>
+          <ion-item>
+            <ion-label position="floating">Apellidos</ion-label>
+            <ion-input formControlName="apellidos" [class.is-invalid]="apellidosNoValido" ></ion-input>
+          </ion-item>
+          <small *ngIf="apellidosNoValido" class="error ion-padding"  style="color: red;">
+            Minimo 3 caracteres.
+          </small>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input formControlName="correo" [class.is-invalid]="correoNoValido"></ion-input>
+          </ion-item>
+          <small *ngIf="correoNoValido" class="error ion-padding"  style="color: red;">
+            Email invalido.
+          </small>
+          <ion-item>
+            <ion-label position="floating">Celular</ion-label>
+            <ion-input  formControlName="celular" [class.is-invalid]="celularNoValido"></ion-input>
+          </ion-item>
+          <small *ngIf="celularNoValido" class="error ion-padding"  style="color: red;">
+            Numero de celular invalido.
+          </small>
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input  formControlName="contrasenia" [class.is-invalid]="contraseniaNoValido"></ion-input>
+          </ion-item>
+          <small *ngIf="contraseniaNoValido" class="error ion-padding"  style="color: red;">
+            Minimo 4 caracteres.
+          </small>
+          <br>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" expand="block" color="warning" class="ion-margin-start ion-margin-end ion-margin-bottom"><strong>REGISTRARSE</strong></ion-button>
+            </ion-col>
+          </ion-row>
+       </form>
+      </ion-card-content>
+    </ion-card>
+    <br>
   </ion-card>
   </ion-content>
  
