@@ -2,10 +2,113 @@ ion-card-content {
     text-align: center;
 }
 
-ion-icon {
+.iconCards {
     font-size: 80px;
 }
 
 ion-card-title{
     font-size: 16px;
 }
+
+.background-image{
+    --background: url(../../../assets/imagenes/bannerSup.png) 0 0/100% 100% no-repeat;
+     height: 170%;
+}
+
+ion-content{
+    --background: white;
+  }
+
+.logo {
+    border-radius: 25px;
+    width: 105px;
+    height: 90px;
+    box-shadow: 5px 10px 10px black;
+  }
+
+  hr{
+    height: 1px !important;
+    background:darkgray !important;
+    display: block !important;
+    font-size: 2em !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+  }
+
+  .verticalLine {
+    width:1%;
+    height:50px;
+    background:green;
+    margin-top: 0;
+    position: relative;
+    margin-left: 10%;
+  }
+
+  .logoSeleccionador {
+    width: 50px;
+    height: 40px;
+  }
+
+  .h6Seleccionador{
+    font-size: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+
+  .borderSeleccionador
+  {
+    border-right-style: ridge
+  }
+  .borderSeleccionador:hover{
+    border-color: #ffd534;
+      border-width: 5px;
+      border-style: solid;
+  }
+
+  .slides{
+    height: 180px;
+    background-color: black;
+  }
+  .cardSeleccionador{
+      margin-top: 20px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-bottom: 20px;
+  }
+
+  .slides-md {
+    --bullet-background: var(--ion-color-step-200, #cccccc);
+    --bullet-background-active: var(--ion-color-warning);
+    --progress-bar-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.25);
+    --progress-bar-background-active: var(--ion-color-warning-shade);
+    --scroll-bar-background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
+    --scroll-bar-background-active: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5);
+  }
+
+  .textInicio{
+    margin: 10px;
+    color: #1c334b;
+  }
+
+  .hrTittle{
+    height: 2px !important;
+    background: #ffd534 !important;
+    display: block !important;
+    font-size: 2em !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-top: -8px;
+    width: 90%
+  }
+
+  .category {
+    width: 100%;
+    box-shadow: none;
+    border-radius: 14px;
+  }
