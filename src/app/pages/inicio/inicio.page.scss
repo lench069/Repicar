@@ -13,6 +13,7 @@ ion-card-title{
 .background-image{
     --background: url(../../../assets/imagenes/bannerSup.png) 0 0/100% 100% no-repeat;
      height: 170%;
+     background-color: #fff;
 }
 
 ion-content{
@@ -71,12 +72,13 @@ ion-content{
   .slides{
     height: 180px;
     background-color: black;
+    border-radius: 3%;
   }
   .cardSeleccionador{
-      margin-top: 20px;
+      margin-top: 30px;
       margin-left: 0px;
       margin-right: 0px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
   }
 
   .slides-md {
@@ -111,4 +113,21 @@ ion-content{
     width: 100%;
     box-shadow: none;
     border-radius: 14px;
+  }
+
+  .badgeInicio {
+    padding: 8px 0;
+    border-radius: 18px;
+    color: #1c334b;
+    border: 1px solid #1c334b;
+    width: 100%;
+    text-align: center;
+  }
+
+  .cardInicio{
+    border-color: #1c334b;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 3%;
   }
