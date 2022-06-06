@@ -52,7 +52,7 @@ ion-button{
 
 .background-image{
   --background: url(../src/assets/imagenes/bannerSup.png) 0 0/100% 100% no-repeat;
-   height: 170%;
+   height: 150%;
    background-color: #fff;
 }
 
@@ -176,6 +176,18 @@ ion-checkbox{
 
 app-newpedido{
   background-color: #fff;
+}
+
+.textBanner{
+  color: azure;
+}
+
+.cardList
+{
+    border-color: #1c334b;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: 4px 4px 4px rgb(0 0 0 / 20%);
 }
 
 
