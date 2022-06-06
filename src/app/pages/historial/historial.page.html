@@ -1,4 +1,4 @@
-<ion-header>
+<!--<ion-header>
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-back-button defaultHref='inicio' text=''>atras</ion-back-button>
@@ -10,11 +10,23 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
+</ion-header>-->
 
-<ion-content>
+<ion-header>
+  <ion-toolbar  class="background-image textBanner">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='inicio' text=''>atras</ion-back-button>
+    </ion-buttons>
+    <ion-title>Historial</ion-title>
+  </ion-toolbar>
+</ion-header>
+<br>
+
+<ion-content class="contentWhite">
+  <ion-card class="cardList" style="width: 371px;">
+    <ion-card-content class="textTittles contentPaddingLR">
     <ion-item-group *ngFor="let item of pedidos">
-      <ion-item-divider color="medium">
+      <ion-item-divider class="dividerColor">
         <ion-label>{{item.fecha}}</ion-label>
       </ion-item-divider>
       <ion-list>
@@ -35,5 +47,7 @@
         </ion-item-sliding>
       </ion-list>
     </ion-item-group>
+    </ion-card-content>
+    </ion-card>
 
 </ion-content>
