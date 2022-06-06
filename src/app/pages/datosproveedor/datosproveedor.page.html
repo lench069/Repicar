@@ -1,12 +1,15 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>Datos proveedor</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
+  <ion-header>
+    <ion-toolbar  class="background-image textBanner">
+      <ion-buttons slot="start">
+        
+      </ion-buttons>
+      <ion-title style="text-align: center;">Datos proveedor</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <br>
 
-
-  <ion-card color="light">
+  <ion-content class="contentWhite">
+  <ion-card color="light cardBorder">
      <ion-card-header>
      <!--<ion-card-subtitle>Card Subtitle</ion-card-subtitle>--> 
       <!--<ion-card-title>Card Title</ion-card-title>--> 
@@ -52,5 +55,6 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="block" color="warning" class="ion-margin-start ion-margin-end ion-margin-bottom" (click)='Aceptar()'>ACEPTAR</ion-button>
+  <ion-button expand="block" color="warning" class="ion-margin-start ion-margin-end ion-margin-bottom" 
+  (click)='Aceptar()'><strong>ACEPTAR</strong> </ion-button>
 </ion-content>
