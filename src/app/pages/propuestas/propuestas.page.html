@@ -1,4 +1,4 @@
-<ion-header>
+<!--<ion-header>
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-back-button defaultHref='inicio' text=''>atras</ion-back-button>
@@ -10,10 +10,20 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+</ion-header>-->
+
+<ion-header>
+  <ion-toolbar  class="background-image textBanner">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='inicio' text=''>atras</ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles del pedido</ion-title>
+  </ion-toolbar>
 </ion-header>
-
-<ion-content>
-
+<br>
+<ion-content class="contentWhite">
+  <ion-card class="cardList" style="width: 371px;">
+    <ion-card-content class="textTittles contentPaddingLR" style="padding-top: 0px;">
   <ion-list>
       <ion-item-sliding  #ionItemSliding> <!--Da un identificador a la etiqueta.-->
         <ion-item>
@@ -46,7 +56,7 @@
   <!--PARA LAS PROPUESTAS EN ESTADO ACEPTADO-->
   <div [hidden]="!mostrarPropuestaAceptada">
     <ion-list >
-      <ion-list-header color="primary">
+      <ion-list-header class="dividerColor">
         <ion-grid>
           <ion-row>
             <ion-col>
@@ -62,7 +72,7 @@
         </ion-grid>
                     
       </ion-list-header>
-      <ion-card>
+      <ion-card class="cardList">
         <ion-item  class="ion-activated">
           <ion-label text-wrap color="success">Por favor, comunicate con el proveedor y facilitale el codigo del pedido para concluir con la transaccion</ion-label>
         </ion-item>
@@ -92,7 +102,7 @@
 <!--PARA LAS PROPUESTAS EN ESTADO COTIZADO-->
     <div [hidden]="!mostrarPropuestasCotizadas">
       <ion-list *ngFor="let propuesta of propuestas; let i = index" >
-        <ion-list-header color="primary">
+        <ion-list-header class="dividerColor">
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -108,10 +118,10 @@
           </ion-grid>
                       
         </ion-list-header>
-        <ion-card>
+        <ion-card class="cardList">
           <ion-item>
             <ion-label text-wrap>Ubicación: {{propuesta.NOMBRE_PROVIN}}, {{propuesta.NOMBRE_CIUDAD}}, {{propuesta.SECTOR}}</ion-label>
-            <ion-button fill="outline" slot="end">New</ion-button>
+            <ion-button fill="outline" color="success" slot="end" class="parpadea">New</ion-button>
           </ion-item>
         
           <ion-card-content>
@@ -130,12 +140,15 @@
                 <ion-label>Envio...</ion-label>
             </ion-item>
          <div style="text-align: right;">
-          <ion-button color="warning" (click)="aceptarPropuesta(propuesta)">Aceptar</ion-button>
+          <ion-button color="warning" (click)="aceptarPropuesta(propuesta)"><strong>Aceptar</strong> </ion-button>
          </div> 
           </ion-card-content>
         </ion-card>
       </ion-list>
 
     </div>
+    </ion-card-content>
+    </ion-card>
     
 </ion-content>
+
