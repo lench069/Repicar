@@ -7,7 +7,7 @@
     <ion-buttons slot="end" >
       <ion-button (click)="servicio.irA('/historial-noti')">
         <ion-icon name="chatbox" style="font-size: 35px;" color="light"></ion-icon>
-        <ion-badge color="danger" style="position: fixed;">{{num_noti}}</ion-badge>
+        <ion-badge class="badgeNoti" *ngIf="num_noti != 0">{{num_noti}}</ion-badge>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
