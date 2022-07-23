@@ -18,6 +18,7 @@ export class ServiciosService {
   //private URL_API: string = 'http://riobytes.com/api_repicar/'; 
   private URL_API: string = 'http://192.168.100.19:8080/api_repicar/'; 
   $emitter = new EventEmitter();
+  $emitterNoti = new EventEmitter();
 
   constructor(private router: Router,
     private http: HttpClient,
@@ -318,7 +319,7 @@ export class ServiciosService {
           });
 
           pushObject.on('notification').subscribe(async (notification: any) => {        
-            let alert = await this.toast.create({
+           /* let alert = await this.toast.create({
               header: notification.title,
               message: notification.message,
               buttons: [
@@ -327,10 +328,11 @@ export class ServiciosService {
                 }
               ]
             });
-            alert.present();
+            alert.present();*/
             console.log('Notificación: ', notification);
             this.Mensaje_Guardar(usuario.ID_CLIENTE,notification).subscribe((data:any)=>{
               console.log('mensaje guardado en tabla notificaciones');
+              this.emitirEventoNotificacion();
             },(error:any)=>{
                 this.Mensajes('No se pudo realizar la peticion.','danger');
             });
@@ -414,6 +416,10 @@ export class ServiciosService {
   emitirEventoPopUp() {
     this.$emitter.emit();
   }  
+
+  emitirEventoNotificacion() {
+    this.$emitterNoti.emit();
+  }
 
 
 }

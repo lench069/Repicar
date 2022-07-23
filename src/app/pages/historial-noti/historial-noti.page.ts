@@ -43,7 +43,7 @@ export class HistorialNotiPage implements OnInit {
      this.notificaciones = data;
      l.dismiss();//quita el loading una vez cargue todo
    },(error:any)=>{ //sentencias cuando ocurrio un error
-      
+    l.dismiss();
    })
  }
  Detalles_Pedido(noti:any, identificador:IonItemSliding)
@@ -55,7 +55,12 @@ export class HistorialNotiPage implements OnInit {
   }).subscribe((data:any)=>{
     //this.servicio.Mensajes(data.mensaje,data.info.id == 0 ? 'danger' : 'success');
     identificador.close(); //para cerrar el sliding al momento de regresar a la pagina
-    this.servicio.irA('/propuestas/'+noti.COD_PEDIDO);
+    if(noti.ESTADO == 0){
+      this.servicio.irA('/propuestas/'+noti.COD_PEDIDO);
+    }else{
+      this.servicio.Mensajes('Esta notificacion ya fue abierta', 'warning')
+    }
+    
   },(error:any)=>{
       this.servicio.Mensajes('No se pudo realizar la peticion.','danger');
   });

@@ -31,6 +31,7 @@ export class InicioPage implements OnInit {
   };
   public flag:Boolean = false;
   private suscriptor: Subscription;
+  private suscriptorNoti: Subscription;
   constructor(public servicio:ServiciosService,
     private storage: Storage,
     private admobService: AdmobService,
@@ -41,6 +42,10 @@ export class InicioPage implements OnInit {
 
       this.suscriptor = servicio.$emitter.subscribe(() => {
         this.mostrarPopup();
+      });
+
+      this.suscriptorNoti = servicio.$emitterNoti.subscribe(() => {
+        this.popup_notificaciones();
       });
       
   }
@@ -74,6 +79,20 @@ export class InicioPage implements OnInit {
     
   }
 
+  async popup_notificaciones(){
+    let alert = await this.alert.create({
+      header: 'Alerta',
+      message: 'Tiene una nueva notificacion',
+      buttons: [
+        {
+          text: 'Si',
+          handler: () => { this.num_notificaciones()}
+        },   
+      ]
+    });
+    alert.present();
+  }
+
   async mostrarPopup(){
     let alert = await this.alert.create({
       header: 'Alerta',
@@ -88,7 +107,7 @@ export class InicioPage implements OnInit {
     alert.present();
   }
 
-   num_notificaciones() {
+  num_notificaciones() {
    this.servicio.num_noti(this.id) // llamado al servicio
    .subscribe((data:any)=>{   //promesa espera hasta que regrese la data aqui va cuando fue exitoso
     console.log(data);
