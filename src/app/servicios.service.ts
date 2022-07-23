@@ -411,9 +411,9 @@ export class ServiciosService {
       );
   };
 
-  emitirEvento() {
+  emitirEventoPopUp() {
     this.$emitter.emit();
-  }   
+  }  
 
 
 }

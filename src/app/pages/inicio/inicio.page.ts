@@ -38,9 +38,11 @@ export class InicioPage implements OnInit {
     public apermisos: AndroidPermissions,
     public alert: AlertController
     ) { 
+
       this.suscriptor = servicio.$emitter.subscribe(() => {
         this.mostrarPopup();
       });
+      
   }
 
   ngOnInit() {

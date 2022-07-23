@@ -353,7 +353,7 @@ export class NewpedidoPage implements OnInit {
     
       this.servicio.Mensajes(data.mensaje,data.info.id == 0 ? 'danger' : 'success');
       this.servicio.verPublicidadMixta(); // publicidad mixta
-      this.servicio.emitirEvento();
+      this.servicio.emitirEventoPopUp();
       this.servicio.irA('/inicio');
     },(error:any)=>{
         this.servicio.Mensajes('No se pudo realizar la peticion.','danger');

@@ -33,17 +33,17 @@
               <ion-grid>
                 <ion-row>
                   <ion-col size="8">
-                    <b>{{fecha_pedido}}</b>
+                    <strong>{{fecha_pedido}}</strong>
                   </ion-col>
                   <ion-col>
-                    <b>{{hora_pedido}}</b>
+                    <strong>{{hora_pedido}}</strong>
                   </ion-col>
                 </ion-row>
               </ion-grid>
             </p> 
-            <p><b>Ubicacion: </b> {{pedido.NOMBRE_PROV}}, {{pedido.NOMBRE_CIUDAD}}</p>
-            <p><b>Automovil: </b> {{pedido.MARCA}}, {{pedido.MODELO}}, {{pedido.ANIO}}</p>
-            <p><b>Repuesto:</b> {{pedido.DESCRIPCION}}, {{pedido.ORIGINAL}}, {{pedido.GENERICO}}</p>
+            <p><strong>Ubicacion: </strong> {{pedido.NOMBRE_PROV}}, {{pedido.NOMBRE_CIUDAD}}</p>
+            <p><strong>Automovil: </strong> {{pedido.MARCA}}, {{pedido.MODELO}}, {{pedido.ANIO}}</p>
+            <p><strong>Repuesto:</strong> {{pedido.DESCRIPCION}}, {{pedido.ORIGINAL}}, {{pedido.GENERICO}}</p>
           </ion-label>
           <ion-badge color="danger" side="end">{{pedido.COD_PEDIDO}}</ion-badge>
         </ion-item>
@@ -74,23 +74,26 @@
       </ion-list-header>
       <ion-card class="cardList">
         <ion-item  class="ion-activated">
-          <ion-label text-wrap color="success">Por favor, comunicate con el proveedor y facilitale el codigo del pedido para concluir con la transaccion</ion-label>
+          <p class="menssage">Por favor, comuniquese con el proveedor y facilitele el código del pedído para concluír con la transacción</p>
         </ion-item>
         <ion-item>
-          <ion-label text-wrap>Ubicación: {{propuestaAceptada.NOMBRE_PROVIN}}, {{propuestaAceptada.NOMBRE_CIUDAD}}, {{propuestaAceptada.SECTOR}}</ion-label>
+          <p><strong>Proveedor: </strong>{{propuestaAceptada.NOMBRE_LOCAL}}, {{propuestaAceptada.NOMBRE_PROVEE}}, {{propuestaAceptada.TEL_PROVEE}}, {{propuestaAceptada.EMAIL_PROVEE}}</p>
+        </ion-item>
+        <ion-item>
+          <p><strong>Ubicación: </strong>{{propuestaAceptada.NOMBRE_PROVIN}}, {{propuestaAceptada.NOMBRE_CIUDAD}}, {{propuestaAceptada.SECTOR}}</p>
         </ion-item>
       
         <ion-card-content>
-          <ion-item>
+          <ion-item *ngIf="propuestaAceptada.P_ORIGINAL != 0">
             <ion-label position="fixed">Original:</ion-label>
-            <ion-input  disabled>{{propuestaAceptada.P_ORIGINAL|currency}} dólares</ion-input>
+            <ion-input  disabled>{{propuestaAceptada.P_ORIGINAL|currency}}</ion-input>
             <ion-checkbox *ngIf="propuestaAceptada.FACTURA == 1" checked="true"  disabled></ion-checkbox> 
             <ion-checkbox *ngIf="propuestaAceptada.FACTURA == 0" checked="false"  disabled></ion-checkbox> 
               <ion-label>Factura</ion-label>
           </ion-item>
-          <ion-item>
+          <ion-item *ngIf="propuestaAceptada.P_GENERICO != 0">
             <ion-label position="fixed">Génerico:</ion-label>
-            <ion-input  disabled>{{propuestaAceptada.P_GENERICO|currency}} dólares</ion-input>
+            <ion-input  disabled>{{propuestaAceptada.P_GENERICO|currency}}</ion-input>
             <ion-checkbox  *ngIf="propuestaAceptada.ENVIO == 1" checked="true"  disabled></ion-checkbox> 
             <ion-checkbox  *ngIf="propuestaAceptada.ENVIO == 0" checked="false"  disabled></ion-checkbox> 
               <ion-label>Envio...</ion-label>
@@ -127,14 +130,14 @@
           <ion-card-content>
             <ion-item>
               <ion-label position="fixed">Original:</ion-label>
-              <ion-input  disabled>{{propuesta.P_ORIGINAL|currency}} dólares</ion-input>
+              <ion-input  disabled>{{propuesta.P_ORIGINAL|currency}}</ion-input>
               <ion-checkbox *ngIf="propuesta.FACTURA == 1" checked="true"  disabled></ion-checkbox> 
               <ion-checkbox *ngIf="propuesta.FACTURA == 0" checked="false"  disabled></ion-checkbox> 
                 <ion-label>Factura</ion-label>
             </ion-item>
             <ion-item>
               <ion-label position="fixed">Génerico:</ion-label>
-              <ion-input  disabled>{{propuesta.P_GENERICO|currency}} dólares</ion-input>
+              <ion-input  disabled>{{propuesta.P_GENERICO|currency}}</ion-input>
               <ion-checkbox  *ngIf="propuesta.ENVIO == 1" checked="true"  disabled></ion-checkbox> 
               <ion-checkbox  *ngIf="propuesta.ENVIO == 0" checked="false"  disabled></ion-checkbox> 
                 <ion-label>Envio...</ion-label>
