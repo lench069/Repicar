@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from 'src/app/servicios.service';
 import { FormGroup, FormBuilder, Validators, FormArray} from '@angular/forms';
-import { Camera } from '@ionic-native/camera/ngx'; //para la camara
+import { Camera} from '@ionic-native/camera/ngx'; //para la camara
 import { LoadingController } from '@ionic/angular';
 //device
 import { Device } from '@awesome-cordova-plugins/device/ngx';
-
+declare var plugins: any;
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -107,15 +107,20 @@ export class RegistroPage implements OnInit {
 
   Capturar_foto()
   {
-    this.camera.getPicture({quality: 60,
-      allowEdit:true, //permite editar la imgen 
-      targetHeight:800, //ancho
-      targetWidth:800, //alto
+    this.camera.getPicture({quality: 80,
+      //allowEdit:true, //permite editar la imgen 
+
+      correctOrientation:true,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }).then((imageData) => {
-     this.imagen = 'data:image/jpeg;base64,' + imageData;
+      plugins.crop.promise(imageData)
+      .then(function success (imageCrop) {
+        // Success.
+        this.imagen = 'data:image/jpeg;base64,' + imageCrop;
+      })
+     
     }, (err) => {
       console.log(err);
        this.servicio.Mensajes('No se capturo ninguna imagen','danger');

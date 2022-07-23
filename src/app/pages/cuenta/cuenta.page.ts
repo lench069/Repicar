@@ -93,10 +93,11 @@ export class CuentaPage implements OnInit {
   Capturar_foto()
   {
     this.flag = true;
-    this.camera.getPicture({quality: 60,
-      allowEdit:true, //permite editar la imgen 
+    this.camera.getPicture({quality: 80,
+     // allowEdit:true, //permite editar la imgen 
       targetHeight:800, //ancho
       targetWidth:800, //alto
+      correctOrientation:true,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
