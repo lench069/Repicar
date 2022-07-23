@@ -218,7 +218,7 @@
           </ion-grid>
           <ion-button expand="block" (click)="Guardar()" color="warning"><strong>ACEPTAR</strong></ion-button>
           
-          <ion-grid>
+          <ion-grid *ngIf="false">
             <ion-row class="ion-text-center">
               <ion-col class="borderSeleccionador" (click)="servicio.irA('/registropedido')">
                 <img class="logoSeleccionador" src="../../../assets/imagenes/eye.png"/>
