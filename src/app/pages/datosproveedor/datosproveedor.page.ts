@@ -58,7 +58,7 @@ export class DatosproveedorPage implements OnInit {
           this.direccion = data.proveedor.DIRECCION;
 
           l.dismiss();//quita el loading una vez cargue todo
-          this.servicio.Mensajes(data.mensaje,'success');
+          //this.servicio.Mensajes(data.mensaje,'success');
           
         }else{
           l.dismiss();//quita el loading una vez cargue todo

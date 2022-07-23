@@ -72,7 +72,7 @@ export class PropuestasPage implements OnInit {
           this.fecha_pedido = data.pedido.FECHA_INI.substr(0,10);
           this.hora_pedido = data.pedido.FECHA_INI.substr(11,5);
           l.dismiss();//quita el loading una vez cargue todo
-          this.servicio.Mensajes(data.mensaje,'success');
+         // this.servicio.Mensajes(data.mensaje,'success');
           
         }else{
           l.dismiss();//quita el loading una vez cargue todo

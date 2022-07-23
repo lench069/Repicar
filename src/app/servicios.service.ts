@@ -337,7 +337,7 @@ export class ServiciosService {
           pushObject.on('registration').subscribe((registration: any) => {
             console.log('Dispositivo: ', registration);
             this.Cliente_Actualizar_Token(usuario.ID_CLIENTE,registration.registrationId).subscribe((data:any)=>{
-              this.Mensajes(data.mensaje,data.info.id == 0 ? 'danger' : 'success');
+              //this.Mensajes(data.mensaje,data.info.id == 0 ? 'danger' : 'success');
             },(error:any)=>{
                 this.Mensajes('No se pudo realizar la peticion.','danger');
             });

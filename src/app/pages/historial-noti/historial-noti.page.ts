@@ -53,7 +53,7 @@ export class HistorialNotiPage implements OnInit {
     id_noti:noti.ID_NOTIFICACIONES,
     estado:1,
   }).subscribe((data:any)=>{
-    this.servicio.Mensajes(data.mensaje,data.info.id == 0 ? 'danger' : 'success');
+    //this.servicio.Mensajes(data.mensaje,data.info.id == 0 ? 'danger' : 'success');
     identificador.close(); //para cerrar el sliding al momento de regresar a la pagina
     this.servicio.irA('/propuestas/'+noti.COD_PEDIDO);
   },(error:any)=>{
