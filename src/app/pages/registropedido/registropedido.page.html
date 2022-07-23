@@ -24,6 +24,9 @@
 <ion-content class="contentWhite">
   <ion-card class="cardList" style="width: 371px;">
     <ion-card-content class="textTittles contentPaddingLR">
+      <div *ngIf="pedidos.length == 0">
+        <p>No existen pedidos pendientes aun!!</p>
+      </div>
     <ion-item-group *ngFor="let item of pedidos">
       <ion-item-divider class="dividerColor">
         <ion-label>{{item.fecha}}</ion-label>
