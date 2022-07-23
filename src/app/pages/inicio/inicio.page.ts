@@ -3,8 +3,9 @@ import { ServiciosService } from 'src/app/servicios.service';
 import { Storage } from '@ionic/storage-angular';
 //IMPORTAMOS NUESTRO SERVICIO
 import { AdmobService } from 'src/app/services/admob.service';
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-inicio',
@@ -29,13 +30,17 @@ export class InicioPage implements OnInit {
     speed:200
   };
   public flag:Boolean = false;
+  private suscriptor: Subscription;
   constructor(public servicio:ServiciosService,
     private storage: Storage,
     private admobService: AdmobService,
     public loading: LoadingController,
-    public apermisos: AndroidPermissions
+    public apermisos: AndroidPermissions,
+    public alert: AlertController
     ) { 
-     
+      this.suscriptor = servicio.$emitter.subscribe(() => {
+        this.mostrarPopup();
+      });
   }
 
   ngOnInit() {
@@ -64,6 +69,21 @@ export class InicioPage implements OnInit {
     this.total_Pedidos();
     //Consultar historial notificaciones
     this.num_notificaciones();
+    
+  }
+
+  async mostrarPopup(){
+    let alert = await this.alert.create({
+      header: 'Alerta',
+      message: 'El pedido solicitado se puede ver en la opcion pendientes',
+      buttons: [
+        {
+          text: 'Si',
+          handler: () => { }
+        },   
+      ]
+    });
+    alert.present();
   }
 
    num_notificaciones() {
@@ -160,7 +180,7 @@ public fades = {
           }
         });
       }
-    },
+    },  
   }
 };
 

@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Push, PushObject  } from '@ionic-native/push/ngx';
 import { ToastController } from '@ionic/angular';
 import { AdmobService } from './services/admob.service';
+import {EventEmitter,} from '@angular/core'
+
 
 
 @Injectable({
@@ -15,6 +17,7 @@ export class ServiciosService {
   //URL del servidor
   //private URL_API: string = 'http://riobytes.com/api_repicar/'; 
   private URL_API: string = 'http://192.168.100.19:8080/api_repicar/'; 
+  $emitter = new EventEmitter();
 
   constructor(private router: Router,
     private http: HttpClient,
@@ -407,6 +410,10 @@ export class ServiciosService {
       }) 
       );
   };
+
+  emitirEvento() {
+    this.$emitter.emit();
+  }   
 
 
 }
