@@ -14,6 +14,7 @@ export class PropuestasPage implements OnInit {
 
   public id:string = '';
   public pedido:any[]=[];
+  public fotos:any[]=[];
   public fecha_pedido:string='';
   public hora_pedido:string='';
   public propuestas:any[]=[];
@@ -66,6 +67,7 @@ export class PropuestasPage implements OnInit {
             }
             
           }
+          this.fotos = data.fotos;
           if(this.mostrarPropuestaAceptada==false)
           {
             console.log('normal');

@@ -47,6 +47,13 @@
           </ion-label>
           <ion-badge color="danger" side="end">{{pedido.COD_PEDIDO}}</ion-badge>
         </ion-item>
+        <ion-item *ngIf="fotos.length > 0">
+          <div id="LoadedImages">
+            <ion-item *ngFor="let item of fotos">
+                <img [src]="item.IMAGEN" class="imagenes">
+            </ion-item>
+          </div>
+        </ion-item>
         <!--<ion-item-options side="end">
           <ion-item-option color="warning" (click)="Detalles_Pedido(pedi,ionItemSliding)">Editar</ion-item-option>
           <ion-item-option color="danger" (click)="Borrar(pedi,ionItemSliding)">Eliminar</ion-item-option>
