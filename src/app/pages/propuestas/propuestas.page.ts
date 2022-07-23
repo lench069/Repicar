@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { ServiciosService } from 'src/app/servicios.service';
 import { AlertController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-propuestas',
@@ -19,6 +20,7 @@ export class PropuestasPage implements OnInit {
   public propuestaAceptada:any[]=[];
   public mostrarPropuestasCotizadas:boolean=true;
   public mostrarPropuestaAceptada:boolean=false;
+  private suscriptor: Subscription;
  
 
   constructor(private servicio:ServiciosService,
@@ -28,6 +30,9 @@ export class PropuestasPage implements OnInit {
     ) { 
       this.id = this.route.snapshot.params.cod_pedido;
       console.log(this.id);
+      this.suscriptor = servicio.$emitterPropuesta.subscribe(() => {
+        this.ionViewWillEnter();
+      });
     }
 
   ngOnInit() {

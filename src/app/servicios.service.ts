@@ -19,6 +19,7 @@ export class ServiciosService {
   private URL_API: string = 'http://192.168.100.19:8080/api_repicar/'; 
   $emitter = new EventEmitter();
   $emitterNoti = new EventEmitter();
+  $emitterPropuesta = new EventEmitter();
 
   constructor(private router: Router,
     private http: HttpClient,
@@ -333,6 +334,7 @@ export class ServiciosService {
             this.Mensaje_Guardar(usuario.ID_CLIENTE,notification).subscribe((data:any)=>{
               console.log('mensaje guardado en tabla notificaciones');
               this.emitirEventoNotificacion();
+              this.emitirEventoPropuesta();
             },(error:any)=>{
                 this.Mensajes('No se pudo realizar la peticion.','danger');
             });
@@ -419,6 +421,10 @@ export class ServiciosService {
 
   emitirEventoNotificacion() {
     this.$emitterNoti.emit();
+  }
+
+  emitirEventoPropuesta() {
+    this.$emitterPropuesta.emit();
   }
 
 
