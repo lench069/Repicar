@@ -42,7 +42,7 @@ export class RegistropedidoPage implements OnInit {
     {
       this.pedidos = data;
     }else {
-      this.servicio.Mensajes('Aun no tienes pedidos.','warning');
+      //this.servicio.Mensajes('Aun no tienes pedidos.','warning');  // Se retira este mensaje por que se coloco directo en la vista
     }
      l.dismiss();//quita el loading una vez cargue todo
    },(error:any)=>{ //sentencias cuando ocurrio un error
