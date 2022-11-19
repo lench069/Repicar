@@ -16,7 +16,7 @@ export class ServiciosService {
 
   //URL del servidor
   //private URL_API: string = 'http://riobytes.com/api_repicar/'; 
-  private URL_API: string = 'http://192.168.100.19:8080/api_repicar/'; 
+  private URL_API: string = 'http://192.168.100.94/api_repicar/'; 
   $emitter = new EventEmitter();
   $emitterNoti = new EventEmitter();
   $emitterPropuesta = new EventEmitter();
@@ -301,12 +301,12 @@ export class ServiciosService {
             id: "canalpropio",
             description: "InventarioApp",
             importance: 3,
-            badge: false,
+            badge: true,
           }).then(() => console.log('Channel created'));
 
           const pushObject: PushObject = this.push.init({
             android: {
-
+              sound: 'true'
             },
             ios: {
               alert: 'true',

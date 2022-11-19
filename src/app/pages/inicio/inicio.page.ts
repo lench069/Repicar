@@ -60,6 +60,7 @@ export class InicioPage implements OnInit {
     });
 
     this.slideOpts = this.fades;
+    this.num_notificaciones();
 
   }
 
@@ -85,7 +86,7 @@ export class InicioPage implements OnInit {
       message: 'Tiene una nueva notificacion',
       buttons: [
         {
-          text: 'Si',
+          text: 'De acuerdo',
           handler: () => { this.num_notificaciones()}
         },   
       ]
@@ -99,7 +100,7 @@ export class InicioPage implements OnInit {
       message: 'El pedido solicitado se puede ver en la opcion pendientes',
       buttons: [
         {
-          text: 'Si',
+          text: 'De acuerdo',
           handler: () => { }
         },   
       ]
@@ -108,6 +109,7 @@ export class InicioPage implements OnInit {
   }
 
   num_notificaciones() {
+   console.log('num notificaciones');
    this.servicio.num_noti(this.id) // llamado al servicio
    .subscribe((data:any)=>{   //promesa espera hasta que regrese la data aqui va cuando fue exitoso
     console.log(data);
