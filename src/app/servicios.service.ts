@@ -228,7 +228,6 @@ export class ServiciosService {
     };
     /**************PROPUESTA********************* */
     Cliente_Acepta_Propuesta(data:any) {
-      console.log(data);
       return this.http.post(
         this.URL_API + 'cliente-acepta-propuesta/'+data.id_propuesta, 
         this.objectToFormData({

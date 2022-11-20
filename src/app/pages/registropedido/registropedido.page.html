@@ -35,11 +35,20 @@
         <ion-item-sliding  *ngFor="let pedi of item.items" #ionItemSliding> <!--Da un identificador a la etiqueta.-->
           <ion-item (click)="Detalles_Pedido(pedi,ionItemSliding)">
             <!--Text wrap permite a textos largos se escriban en las sigueintes lineas-->
-            <ion-label text-wrap>
-              <p><b>Ubicacion:</b> {{pedi.NOMBRE_PROV}}, {{pedi.NOMBRE_CIUDAD}}</p>
-              <p><b>Automovil:</b> {{pedi.MODELO}}, {{pedi.MARCA}}, {{pedi.ANIO}}</p>
-              <p><b>Repuesto:</b> {{pedi.DESCRIPCION}}, {{pedi.ORIGINAL}}, {{pedi.GENERICO}}</p>
-            </ion-label>
+            <ion-grid>
+              <ion-row>
+                <ion-badge *ngIf="pedi.ESTADO == 'Creado'" color="primary" side="end">{{pedi.ESTADO}}</ion-badge>
+                <ion-badge *ngIf="pedi.ESTADO == 'Cotizado'" color="warning" side="end">{{pedi.ESTADO}}</ion-badge>
+                <ion-badge *ngIf="pedi.ESTADO == 'Pre-Finalizado'" color="success" side="end">{{pedi.ESTADO}}</ion-badge>
+              </ion-row>
+              <ion-row>
+                <ion-label text-wrap>
+                  <p><b>Ubicacion:</b> {{pedi.NOMBRE_PROV}}, {{pedi.NOMBRE_CIUDAD}}</p>
+                  <p><b>Automovil:</b> {{pedi.MODELO}}, {{pedi.MARCA}}, {{pedi.ANIO}}</p>
+                  <p><b>Repuesto:</b> {{pedi.DESCRIPCION}}, {{pedi.ORIGINAL}}, {{pedi.GENERICO}}</p>
+                </ion-label>
+              </ion-row>       
+            </ion-grid>      
             <ion-badge color="danger" side="end">{{pedi.COD_PEDIDO}}</ion-badge>
           </ion-item>
           <ion-item-options side="end">
