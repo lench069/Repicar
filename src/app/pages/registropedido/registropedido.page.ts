@@ -42,6 +42,7 @@ export class RegistropedidoPage implements OnInit {
     {
       this.pedidos = data;
     }else {
+      
       //this.servicio.Mensajes('Aun no tienes pedidos.','warning');  // Se retira este mensaje por que se coloco directo en la vista
     }
      l.dismiss();//quita el loading una vez cargue todo
@@ -57,8 +58,26 @@ export class RegistropedidoPage implements OnInit {
     this.servicio.irA('/propuestas/'+pedido.COD_PEDIDO);
  };
 
- Borrar_Pedido(){
-
+ async Borrar_Pedido(pedido:any){
+  console.log(pedido.COD_PEDIDO);
+  let l = await this.loading.create(); //se crea el loading
+    l.present(); //se muestra el loading
+   this.servicio.borrar_pedido(pedido.COD_PEDIDO) // llamado al servicio
+   .subscribe((data:any)=>{   //promesa espera hasta que regrese la data aqui va cuando fue exitoso
+    
+    if(data.mensaje == 'delete')
+    {
+      this.Cargar_Pedidos();
+    }else {
+      //this.servicio.Mensajes('Aun no tienes pedidos.','warning');  // Se retira este mensaje por que se coloco directo en la vista
+    }
+     l.dismiss();//quita el loading una vez cargue todo
+   },(error:any)=>{ //sentencias cuando ocurrio un error
+    this.servicio.Mensajes('Compruebe su conexion a internet.','danger');
+      l.dismiss();//quita el loading una vez cargue todo
+      this.servicio.irA('/inicio');
+   })
+    
  }
  
 

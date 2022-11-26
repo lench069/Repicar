@@ -33,23 +33,40 @@
       </ion-item-divider>
       <ion-list>
         <ion-item-sliding  *ngFor="let pedi of item.items" #ionItemSliding> <!--Da un identificador a la etiqueta.-->
-          <ion-item (click)="Detalles_Pedido(pedi,ionItemSliding)">
+          <ion-item >
             <!--Text wrap permite a textos largos se escriban en las sigueintes lineas-->
             <ion-grid>
               <ion-row>
-                <ion-badge *ngIf="pedi.ESTADO == 'Creado'" color="primary" side="end">{{pedi.ESTADO}}</ion-badge>
-                <ion-badge *ngIf="pedi.ESTADO == 'Cotizado'" color="warning" side="end">{{pedi.ESTADO}}</ion-badge>
-                <ion-badge *ngIf="pedi.ESTADO == 'Pre-Finalizado'" color="success" side="end">{{pedi.ESTADO}}</ion-badge>
+                <ion-col size="10">
+                  <ion-badge *ngIf="pedi.ESTADO == 'Creado'" color="primary" side="end">{{pedi.ESTADO}}</ion-badge>
+                  <ion-badge *ngIf="pedi.ESTADO == 'Cotizado'" color="warning" side="end">{{pedi.ESTADO}}</ion-badge>
+                  <ion-badge *ngIf="pedi.ESTADO == 'Pre-Finalizado'" color="success" side="end">{{pedi.ESTADO}}</ion-badge>
+                  <ion-label text-wrap>
+                    <p><b>Ubicacion:</b> {{pedi.NOMBRE_PROV}}, {{pedi.NOMBRE_CIUDAD}}</p>
+                    <p><b>Automovil:</b> {{pedi.MODELO}}, {{pedi.MARCA}}, {{pedi.ANIO}}</p>
+                    <p><b>Repuesto:</b> {{pedi.DESCRIPCION}}, {{pedi.ORIGINAL}}, {{pedi.GENERICO}}</p>
+                  </ion-label>
+                </ion-col>
+                <ion-col size="1" >
+                  <ion-badge color="danger" side="end" >{{pedi.COD_PEDIDO}}</ion-badge>
+                  <ion-button (click)="Detalles_Pedido(pedi,ionItemSliding)" class="posIcon" color="warning">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                  <ion-button (click)="Borrar_Pedido(pedi)"  class="posIcon" color="light" *ngIf="pedi.ESTADO != 'Pre-Finalizado'">
+                    <ion-icon  name="trash-outline" side="end"></ion-icon> 
+                  </ion-button>
+                </ion-col>                    
               </ion-row>
               <ion-row>
-                <ion-label text-wrap>
-                  <p><b>Ubicacion:</b> {{pedi.NOMBRE_PROV}}, {{pedi.NOMBRE_CIUDAD}}</p>
-                  <p><b>Automovil:</b> {{pedi.MODELO}}, {{pedi.MARCA}}, {{pedi.ANIO}}</p>
-                  <p><b>Repuesto:</b> {{pedi.DESCRIPCION}}, {{pedi.ORIGINAL}}, {{pedi.GENERICO}}</p>
-                </ion-label>
-              </ion-row>       
-            </ion-grid>      
-            <ion-badge color="danger" side="end">{{pedi.COD_PEDIDO}}</ion-badge>
+                    <ion-col size="8">
+                      
+                    </ion-col>
+                    <ion-col >
+                     
+                                      
+                    </ion-col>
+              </ion-row>
+            </ion-grid>
           </ion-item>
           <ion-item-options side="end">
             <!--<ion-item-option color="warning" (click)="Detalles_Pedido(pedi,ionItemSliding)">Detalles</ion-item-option>

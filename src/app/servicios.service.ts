@@ -426,6 +426,13 @@ export class ServiciosService {
     this.$emitterPropuesta.emit();
   }
 
+  borrar_pedido(id:string)
+  {
+    return this.http.get(
+      this.URL_API + 'borrar-pedido/'+id , 
+      );
+  }
+
 
 }
 
