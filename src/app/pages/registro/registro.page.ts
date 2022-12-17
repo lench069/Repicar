@@ -87,7 +87,7 @@ export class RegistroPage implements OnInit {
         email:this.forma.value.correo,
         contrasenia:this.forma.value.contrasenia,
         estado:this.estado,
-        imagen: this.imagen,
+        imagen: this.imagen == '../../../assets/imagenes/user1.png' ? '' : this.imagen ,
         token: '',
         uidd: this.device.uuid,
         login: '0' //true
@@ -110,19 +110,16 @@ export class RegistroPage implements OnInit {
   Capturar_foto()
   {
     this.camera.getPicture({quality: 80,
-      //allowEdit:true, //permite editar la imgen 
-
+     // allowEdit:true, //permite editar la imgen 
+      targetHeight:800, //ancho
+      targetWidth:800, //alto
       correctOrientation:true,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }).then((imageData) => {
-      plugins.crop.promise(imageData)
-      .then(function success (imageCrop) {
-        // Success.
-        this.imagen = 'data:image/jpeg;base64,' + imageCrop;
-      })
-     
+     this.imagen = 'data:image/jpeg;base64,' + imageData;
+
     }, (err) => {
       console.log(err);
        this.servicio.Mensajes('No se capturo ninguna imagen','danger');
