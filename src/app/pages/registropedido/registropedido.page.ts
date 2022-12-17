@@ -42,7 +42,7 @@ export class RegistropedidoPage implements OnInit {
     {
       this.pedidos = data;
     }else {
-      
+      this.pedidos = [];
       //this.servicio.Mensajes('Aun no tienes pedidos.','warning');  // Se retira este mensaje por que se coloco directo en la vista
     }
      l.dismiss();//quita el loading una vez cargue todo
@@ -59,7 +59,7 @@ export class RegistropedidoPage implements OnInit {
  };
 
  async Borrar_Pedido(pedido:any){
-  console.log(pedido.COD_PEDIDO);
+
   let l = await this.loading.create(); //se crea el loading
     l.present(); //se muestra el loading
    this.servicio.borrar_pedido(pedido.COD_PEDIDO) // llamado al servicio
