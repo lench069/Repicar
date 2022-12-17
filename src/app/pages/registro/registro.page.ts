@@ -92,10 +92,12 @@ export class RegistroPage implements OnInit {
         uidd: this.device.uuid,
         login: '0' //true
       }).subscribe((data:any)=>{
-        console.log();
-        this.servicio.Mensajes(data.mensaje,data.info.id_cliente == 0 ? 'danger' : 'success');
+        console.log(data);
+        this.servicio.Mensajes(data.mensaje , data.info.id_cliente == 0 ? 'danger' : 'success');
         l.dismiss();
-        this.servicio.irA('/login');
+        if(data.info.id_cliente != 0){
+          this.servicio.irA('/login');
+        }    
       },(error:any)=>{
           this.servicio.Mensajes('No se pudo realizar la peticion.','danger');
           l.dismiss();
