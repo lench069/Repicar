@@ -63,9 +63,11 @@ const routes: Routes = [
   {
     path: 'historial-noti',
     loadChildren: () => import('./pages/historial-noti/historial-noti.module').then( m => m.HistorialNotiPageModule)
+  },
+  {
+    path: 'patrocinadores/:id',
+    loadChildren: () => import('./pages/patrocinadores/patrocinadores.module').then( m => m.PatrocinadoresPageModule)
   }
-
-  
 ];
 
 @NgModule({

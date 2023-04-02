@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar  class="background-image textBanner">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='inicio' text=''>atras</ion-back-button>
+    </ion-buttons>
+    <ion-title>Patrocinadores</ion-title>
+  </ion-toolbar>
+</ion-header>
+<br>
+
+<ion-content class="contentWhite">
+  <ion-card class="cardList" style="width: 371px;">
+    <ion-card-content class="textTittles contentPaddingLR">
+      <div *ngIf="patrocinadores.length == 0">
+        <p>No existen patrocinadores!!</p>
+      </div>
+      <ion-list >
+          <ion-item *ngFor="let item of patrocinadores">
+            <ion-label text-wrap>
+              <p><b>Nombre:</b> {{item.nombre}}</p>
+              <p><b>Direccion:</b> {{item.direccion}}</p>
+              <p><b>Telefono:</b> {{item.telefono}}</p>
+            </ion-label>
+          </ion-item>
+      </ion-list>
+    </ion-card-content>
+    </ion-card>
+
+</ion-content>

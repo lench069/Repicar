@@ -18,6 +18,7 @@ export class InicioPage implements OnInit {
   public total_pedidos_aceptados: number = 0;
   public id:number=0;
   public num_noti:number=0;
+  public tipo_patrocinador = [];
   public slideOpts:any = {
     initialSlide: 1,
     speed: 400
@@ -77,6 +78,8 @@ export class InicioPage implements OnInit {
     this.total_Pedidos();
     //Consultar historial notificaciones
     this.num_notificaciones();
+    //Carga patrocinadores
+    this.Cargar_Tipo_Patrocinador();
     
   }
 
@@ -206,5 +209,29 @@ public fades = {
     },  
   }
 };
+
+async Cargar_Tipo_Patrocinador() {
+  let l = await this.loading.create(); //se crea el loading
+  l.present(); //se muestra el loading
+ this.servicio.Tipo_Patrocinador_Listado() // llamado al servicio
+ .subscribe((data:any)=>{   //promesa espera hasta que regrese la data aqui va cuando fue exitoso
+  console.log(data);
+  if(data.info.items.length > 0)
+  {
+    this.tipo_patrocinador = data.info.items;
+  }else {
+    this.tipo_patrocinador = [];
+    //this.servicio.Mensajes('Aun no tienes pedidos.','warning');  // Se retira este mensaje por que se coloco directo en la vista
+  }
+   l.dismiss();//quita el loading una vez cargue todo
+ },(error:any)=>{ //sentencias cuando ocurrio un error
+  this.servicio.Mensajes('Compruebe su conexion a internet.','danger');
+    l.dismiss();//quita el loading una vez cargue todo
+ })
+}
+Ver_patrocinadores(item:any)
+ {
+    this.servicio.irA('/patrocinadores/'+item.id);
+ };
 
 }

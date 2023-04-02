@@ -433,6 +433,19 @@ export class ServiciosService {
       );
   }
 
+  //tipo Patrocinadores
+  Tipo_Patrocinador_Listado() {
+    return this.http.get(
+      this.URL_API + 'listar-tipo-patrocinador');
+  }
+  //Patrocinadores
+  Patrocinadores_consultar(id:number)
+      {
+        return this.http.get(
+          this.URL_API + 'consultar-patrocinadores/'+id , 
+          );
+      }
+
 
 }
 

@@ -1,0 +1,20 @@
+ion-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+.posIcon {
+
+    --background: #fff;
+    --background-hover: #1c334b;
+    --background-activated: #1c334b;
+    --background-focused: #1c334b;
+  
+    --color: black;
+    --ripple-color: #1c334b;
+  
+    --padding: 0px;
+
+
+}
